@@ -1,10 +1,37 @@
-.container{
+.container {
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
     align-content: center;
     align-items: center;
-     div{
-        order: 0;
-        flex: 0 0 auto;
-        align-self: flex-start;
-     }
+    height: 90%;
+}
+
+img {
+    width: 375px;
+    align-self: center;
+
+}
+
+button{
+    color: #fff;
+    background: #F2994A;
+    border: 1px solid #E0812C;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 184px;
+    font-size: 16px;
+    height: 45px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 49px
+
+}
+
+@media screen and (min-width: 768px) {
+
+    img {
+        width: 408px;
+       
+    }
 }
