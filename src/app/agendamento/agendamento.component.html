@@ -1,35 +1,54 @@
 <div class="container">
-    <div>
+    <form>
+    <div class="box">
         <h2>Redes sociais</h2>
-        <ul>
-            <li>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-linkedin"></i>
-                <i class="fab fa-youtube"></i>
-                <i class="fab fa-pinterest"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-facebook"></i>
-            </li>
+        <ul class="flex-wrap">    
+            <li> <i class="fab fa-instagram"></i></li>
+            <li>  <i class="fab fa-linkedin"></i></li>
+            <li class="disabled">  <i class="fab fa-youtube"></i></li>
+            <li class="disabled">   <i class="fab fa-pinterest"></i></li>
+            <li class="disabled">  <i class="fab fa-twitter"></i></li>
+            <li class="disabled">  <i class="fab fa-facebook"></i></li>
         </ul>
     </div>
-    <div>
+    <div class="box"> 
         <h2>Data publicação</h2>
-        <input type="date">
-        <input type="datetime-local">
+        <div class="flex-wrap">
+            <input type="date" class="btnCal-click">
+            <input type="time" class="btnCal-click">
+        </div>  
     </div>
 
-    <div class="">
+    <div class="box">
         <h2>Texto do Post</h2>
-        <textarea placeholder="Aqui vai o texto descritivo do post"></textarea>
+        <textarea  
+        placeholder="Aqui vai o texto descritivo do post"></textarea>
+        <i
+        (click)="toggled = !toggled"
+        [(emojiPickerIf)]="toggled"
+        [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
+        (emojiPickerSelect)="handleSelection($event)"
+        >😄</i
+      >
     </div>
-    <div class="">
+    <div class="box">
         <h2>Upload de Imagem</h2>
-
-        <button>Visualizar post</button>
+        <div class="box-upload">
+            <button>Pesquisar Imagem </button>
+        </div>
     </div>
-    <div class="">
+    <div class="box">
+        <button class="hidden-lg">Visualizar post</button>
+         <p>
+             Aguardando conteúdo.Informe os canais e as mídias
+             selecionadas para visualização.
+         </p>
+         <img src="assets/img/post-preview.svg" class="show-lg">
+    </div>
+    <div class="box">
         <button>Cancelar</button>
         <button>Rascunho</button>
         <button>Agendar</button>
     </div>
+    </form>
 </div>

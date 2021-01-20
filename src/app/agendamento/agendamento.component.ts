@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./agendamento.component.scss']
 })
 export class AgendamentoComponent implements OnInit {
+  toggled: boolean = false;
+  message: string;
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  
+handleSelection(event) {
+  console.log(event.char);
+}
 }

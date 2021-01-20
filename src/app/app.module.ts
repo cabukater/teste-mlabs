@@ -1,12 +1,13 @@
 import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AgendamentoComponent } from './agendamento/agendamento.component';
 import { ListagemAgendamentoComponent } from './listagem-agendamento/listagem-agendamento.component';
+import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,12 @@ import { ListagemAgendamentoComponent } from './listagem-agendamento/listagem-ag
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+          NgxEmojiPickerModule.forRoot()
+
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

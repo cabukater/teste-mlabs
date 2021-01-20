@@ -11,7 +11,15 @@ body{
 
 }
 
-.container{
+ul{
+    list-style: none;  
+}
+
+.flex-wrap{
     display: flex;
-    
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: flex-start;
 }
