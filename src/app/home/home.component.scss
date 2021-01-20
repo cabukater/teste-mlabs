@@ -1,0 +1,10 @@
+.container{
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+     div{
+        order: 0;
+        flex: 0 0 auto;
+        align-self: flex-start;
+     }
+}

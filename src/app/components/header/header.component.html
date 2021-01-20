@@ -1,7 +1,14 @@
 <header>
-  <img src="assets/img/logo-mlabs.svg" alt="M Labs"  class="logo-header">
-  <div class="user">
-   <img src="assets/img/user.svg" [title]="username"[alt]="username"  class="logo-header">
-    <p> {{username}}</p>
-    </div> 
+    <div class="container">
+       <a class="logo-button" routerLink='agendamento'>
+        <i class="fas fa-bars"></i>
+       </a>
+     
+        <div class="box-user">
+            <img src="assets/img/user.svg" [title]="username" [alt]="username" class="logo-header">
+            <p> {{username}}</p>
+          </div>
+    </div>
 </header>
+
+
