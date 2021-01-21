@@ -3,7 +3,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: #E5E5E5;
+    background-color:#F8F8F8;
     margin: 0;
     height: 100%;
     position: absolute;
@@ -73,3 +73,15 @@ ul{
     height: 35px;
     font-size: 16px;
 }
+
+.show-lg{
+    display: none;
+ }
+ 
+ .hidden-lg{
+     display: block;
+ }
+
+ .m-5{
+     margin:5%
+ }
