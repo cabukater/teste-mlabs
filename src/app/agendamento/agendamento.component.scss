@@ -93,7 +93,8 @@
 
     }
     .lg-btn.hidden-lg{
-      width: 100%;
+      width: 95%;
+      margin-bottom: 10px;
     }
 
     .up-box{
@@ -107,11 +108,17 @@
 
 }
 
+.footer {
+    background-color: #fff;
+    height: 67px;
+   padding-top: 10px;
+ 
+}
+
 @media screen and (min-width: 768px) {
       .field-text {
           height: 146px !important;
       }
-
       .box.show-lg{
          p{
              text-align: center;
@@ -125,10 +132,7 @@
           margin-bottom: 20%;
       }
       .footer {
-          background-color: #fff;
-          height: 67px;
-
-         .lg-6{
+          .lg-6{
             flex: 0 1 auto;
             align-self: auto;
          }
