@@ -1,8 +1,9 @@
-<div class="container">
-    <form>
-        <div class="box m-5">
+<div class="container  ">
+  <form class="flex-container">
+    <div class="lg-6 col-12 flex-wrap">
+        <div class="box m-3">
             <h2>Redes sociais</h2>
-            <ul class="flex-wrap m-5">
+            <ul class="flex-wrap m-3">
                 <li> <i class="fab fa-instagram"></i></li>
                 <li> <i class="fab fa-linkedin-in"></i></li>
                 <li class="disabled"> <i class="fab fa-youtube"></i></li>
@@ -11,16 +12,16 @@
                 <li class="disabled"> <i class="fab fa-facebook-f"></i></li>
             </ul>
         </div>
-        <div class="box m-5">
+        <div class="box m-3">
             <h2>Data publicação</h2>
-            <div class="flex-wrap m-5">
+            <div class="flex-wrap m-3">
                 <input type="date" class="btnCal-click">
                 <input type="time" class="btnCal-click">
             </div>
         </div>
-        <div class="box m-5">
+        <div class="box m-3  col-12">
             <h2>Texto do Post</h2>
-            <div class="field-text flex-wrap m-5">
+            <div class="field-text flex-wrap m-3">
                 <textarea placeholder="Aqui vai o texto descritivo do post"></textarea>
                 <button class="emoji-btn" type="button" (click)="toggled = !toggled" [(emojiPickerIf)]="toggled"
                     [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
@@ -29,27 +30,39 @@
                 </button>
             </div>
         </div>
-        <div class="box m-5">
+        <div class="box m-3  col-12">
             <h2>Upload de Imagem</h2>
-            <div class="box-upload flex-wrap m-5">
+      
+            <div class="box-upload flex-wrap m-3">
+                <div class="text-center up-box show-lg col-12">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Arraste e solte aqui ou clique no botão abaixo.</p>
+                  </div>
                 <button type="button" class="outline-blue-btn lg-btn">Pesquisar Imagem </button>
             </div>
         </div>
-        <button type="button" class="hidden-lg solid-orange-btn lg-btn m-5">
+        <button type="button" class="hidden-lg solid-orange-btn lg-btn m5">
             Visualizar post
         </button>
-        <div class="box m-5" class="show-lg">
-           <h2 > Visualizar post</h2>
+    </div>
+    <div class="lg-6 col-12">  
+        <div class="box show-lg m-3 lg-h ">
+           <h2> Visualizar post</h2>
             <p>
                 Aguardando conteúdo.Informe os canais e as mídias
                 selecionadas para visualização.
             </p>
             <img src="assets/img/post-preview.svg" class="show-lg">
-        </div>
-        <div class="box flex-wrap m-5 box-btn">
-            <button class="sm-btn transparent-btn" type="button">Cancelar</button>
-            <button class="sm-btn outline-blue-btn" type="button">Rascunho</button>
-            <button class="sm-btn solid-blue-btn" type="button">Agendar</button>
-        </div>
+        </div>     
+    </div>
+
     </form>
+</div>
+
+<div class="footer">
+    <div class="container flex-end">  
+        <button class="md-btn transparent-btn" type="button">Cancelar</button>
+        <button class="md-btn outline-blue-btn" type="button">Rascunho</button>
+        <button class="md-btn solid-blue-btn" type="button">Agendar</button>
+    </div>
 </div>
