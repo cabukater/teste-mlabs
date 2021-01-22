@@ -5,7 +5,7 @@
         order: 0;
         flex: 5 5 auto;
         border: 1px solid #e0e0e0;
-             h2 {
+        h2 {
             line-height: 24px;
             font-size: 16px;
             font-weight: 500;
@@ -15,7 +15,7 @@
             padding-bottom: 5px;
             border-bottom: 1px solid #e0e0e0;
         }
-        ul {
+        ul.social-network {
             margin: 0;
             padding: 5%;
             li {
@@ -30,7 +30,7 @@
                 i {
                     color: #333;
                     font-size: 16px;
-                     font-weight: 600;
+                    font-weight: 600;
                 }
                 &.disabled {
                     background-color: #ddd;
@@ -52,8 +52,7 @@
         color: #828282;
         border-radius: 4px;
         border: 1px solid #949494;
-        font-family: 'Poppins', sans-serif;
-
+        font-family: "Poppins", sans-serif;
     }
     .field-text {
         padding: 10px;
@@ -69,12 +68,12 @@
             height: 100%;
             border: none;
             outline: none;
-            font-family: 'Poppins', sans-serif;
+            font-family: "Poppins", sans-serif;
             font-size: 14px;
         }
         .emoji-btn {
             font-size: 14px;
-            color: #CBCBCB;
+            color: #cbcbcb;
             border: none;
             outline: none;
             cursor: pointer;
@@ -82,59 +81,144 @@
         }
     }
 
-    .box-upload{   
-       border: 1px dashed #BDBDBD;
-       padding: 24px 63px ;
-       border-radius: 4px;
-       font-size: 16px;
-         p{
-             margin-bottom: 40px;
-         }
-
-    }
-    .lg-btn.hidden-lg{
-      width: 95%;
-      margin-bottom: 10px;
-    }
-
-    .up-box{
-        text-align: center;
-        i{
-            font-size: 45px;
-            color: #828282;
-
+    .box-upload {
+        border: 1px dashed #bdbdbd;
+        padding: 24px 63px;
+        border-radius: 4px;
+        font-size: 16px;
+        p {
+            margin-bottom: 40px;
         }
     }
+    .lg-btn.hidden-lg {
+        width: 95%;
+        margin-bottom: 10px;
+    }
 
+    .up-box {
+        text-align: center;
+        i {
+            font-size: 45px;
+            color: #828282;
+        }
+    }
 }
 
 .footer {
     background-color: #fff;
     height: 67px;
-   padding-top: 10px;
- 
+    padding-top: 10px;
 }
 
 @media screen and (min-width: 768px) {
-      .field-text {
-          height: 146px !important;
-      }
-      .box.show-lg{
-         p{
-             text-align: center;
-             width: 100%;
-             max-width: 420px;
-             margin: 12% auto;
-         }
-      }
-      img{
-          margin: 0 auto;
-          margin-bottom: 20%;
-      }
-      .footer {
-          .lg-6{
+    .field-text {
+        height: 146px !important;
+    }
+    .box.show-lg {
+        p {
+            text-align: center;
+            width: 100%;
+            max-width: 420px;
+            margin: 12% auto;
+        }
+    }
+    img {
+        margin: 0 auto;
+        margin-bottom: 20%;
+    }
+    .footer {
+        .lg-6 {
             flex: 0 1 auto;
             align-self: auto;
-         }
-      }
+        }
+    }
+
+    .show-posts {
+        overflow-x: scroll;
+        width: 100%;
+        padding: 3%;
+        height: 650px;
+        .card {
+            border: 1px solid #bdbdbd;
+            border-radius: 4px;
+            width: 368px;
+            overflow: hidden;
+            .header-card {
+                width: 100%;
+                display: inline-flex;
+                .icon-title {
+                    width: 45px;
+                    height: 45px;
+                    line-height: 45px;
+                    text-align: center;
+                    font-size: 30px;
+                    border-radius: 100%;
+                    color: #fff;
+                    float: left;
+                    margin-right: 10px;
+                }
+                .title {
+                    font-size: 14px;
+                    font-weight: 500;
+                    height: 45px;
+                    float: left;
+                    margin: 0;
+                }
+            }
+            img{
+                margin: 0;
+            }
+            .icons-box{
+                margin:0;
+                width: 100%;
+                display: block;
+                padding: 0;
+              li{
+                display: inline;
+                border: none;
+                 i{
+                 color: #333;
+                }
+
+              }
+            }
+           p{
+             margin: 3%;
+             font-size: 14px;
+             text-align: left;
+          }
+        }
+    
+        .instagram-view {
+            .title{
+                line-height: 45px;
+            }
+            .icon-title {
+                background: linear-gradient(187.5deg, #ef2ea2 5.81%, #e0a22b 109.34%);
+            }
+            .icons-box {
+                 i{
+                     font-size: 21px;
+                 }
+            }
+        }
+        .linkedin-view {
+            .icon-title{
+                background-color: #2E92EF;
+            }
+            .icons-box {
+                i{
+                    font-size: 16px;
+                }
+           }
+           .comments{
+               margin: 0;
+               padding: 0 10px;
+               font-size: 12px;
+               border-bottom:1px solid #bdbdbd;
+               width:100%
+
+           }
+        }
+    }
 }
