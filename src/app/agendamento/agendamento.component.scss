@@ -19,24 +19,27 @@
             margin: 0;
             padding: 5%;
             li {
-                width: 33px;
-                height: 33px;
-                border: 1px solid #9e9e9e;
-                border-radius: 100%;
-                align-self: stretch;
-                line-height: 33px;
-                text-align: center;
-                background-color: transparent;
-                i {
-                    color: #333;
-                    font-size: 16px;
-                    font-weight: 600;
-                }
-                &.disabled {
-                    background-color: #ddd;
-                    border: 0.5px solid #9e9e9e;
-                    & i {
-                        color: #989898;
+                button {
+                    cursor: pointer;
+                    width: 33px;
+                    height: 33px;
+                    border: 1px solid #9e9e9e;
+                    border-radius: 100%;
+                    align-self: stretch;
+                    line-height: 33px;
+                    text-align: center;
+                    background-color: transparent;
+                    i {
+                        color: #333;
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+                    &:disabled {
+                        background-color: #ddd;
+                        border: 0.5px solid #9e9e9e;
+                        & i {
+                            color: #989898;
+                        }
                     }
                 }
             }
@@ -137,7 +140,7 @@
     }
 
     .show-posts {
-       .card {
+        .card {
             border: 1px solid #bdbdbd;
             border-radius: 4px;
             width: 368px;
@@ -145,7 +148,7 @@
             margin: 1%;
             overflow: hidden;
             display: inline-grid;
-     
+
             .header-card {
                 width: 100%;
                 display: inline-flex;
@@ -172,7 +175,7 @@
                 margin: 0;
             }
             .icons-box {
-                 padding: 0;
+                padding: 0;
                 li {
                     display: inline;
                     border: none;
@@ -222,7 +225,6 @@
         .show-posts {
             width: 100%;
             display: flex;
-           
         }
     }
 }
