@@ -48,7 +48,6 @@
         <div class="lg-6 col-12">
             <div class="box show-lg m-3 lg-h ">
                 <h2> Visualizar post</h2>
-
                 <div class="not-image" [hidden]="true">
                     <p>
                         Aguardando conteúdo.Informe os canais e as mídias
@@ -56,6 +55,7 @@
                     </p>
                     <img src="assets/img/post-preview.svg" class="show-lg">
                 </div>
+                <div class="box-scroll">
                 <div class="show-posts">
                     <div class="instagram-view card">
                         <div class="header-card p-5">
@@ -81,12 +81,11 @@
                                     06 de Setembro
                                 </small>
                             </h3>
-                             
                         </div>
                         <p> Aqui vai o descritivo desse post</p>
                         <img src="assets/img/img1.svg">
                         <p class="comments small">5 comentários</p>
-                        <ul class="icons-box">
+                        <ul class="icons-box m-3">
                             <li> <i class="far fa-thumbs-up"></i></li>
                             <li> <i class="far fa-comment-alt"></i></li>
                             <li> <i class="fas fa-share"></i></li>
@@ -96,14 +95,14 @@
                 </div>
             </div>
         </div>
-
+    </div>
     </form>
 </div>
 
 <div class="footer">
     <div class="container flex-end">
         <button class="md-btn transparent-btn" type="button">Cancelar</button>
-        <button class="md-btn outline-blue-btn" type="button">Rascunho</button>
+        <button class="md-btn outline-blue-btn" type="button">Salvar rascunho</button>
         <button class="md-btn solid-blue-btn" type="button">Agendar</button>
     </div>
 </div>

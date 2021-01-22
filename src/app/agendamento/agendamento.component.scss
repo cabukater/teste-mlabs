@@ -6,13 +6,13 @@
         flex: 5 5 auto;
         border: 1px solid #e0e0e0;
         h2 {
-            line-height: 24px;
+            line-height: 20px;
             font-size: 16px;
             font-weight: 500;
-            height: 24px;
+            height: 20px;
             color: 333333;
-            padding-left: 5%;
-            padding-bottom: 5px;
+            padding-left: 3%;
+            padding-bottom: 1%;
             border-bottom: 1px solid #e0e0e0;
         }
         ul.social-network {
@@ -83,11 +83,11 @@
 
     .box-upload {
         border: 1px dashed #bdbdbd;
-        padding: 24px 63px;
+        padding: 14px 63px;
         border-radius: 4px;
         font-size: 16px;
         p {
-            margin-bottom: 40px;
+            margin-bottom: 10px;
         }
     }
     .lg-btn.hidden-lg {
@@ -98,7 +98,7 @@
     .up-box {
         text-align: center;
         i {
-            font-size: 45px;
+            font-size: 35px;
             color: #828282;
         }
     }
@@ -108,11 +108,14 @@
     background-color: #fff;
     height: 67px;
     padding-top: 10px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 @media screen and (min-width: 768px) {
     .field-text {
-        height: 146px !important;
+        height: 106px !important;
     }
     .box.show-lg {
         p {
@@ -134,15 +137,15 @@
     }
 
     .show-posts {
-        overflow-x: scroll;
-        width: 100%;
-        padding: 3%;
-        height: 650px;
-        .card {
+       .card {
             border: 1px solid #bdbdbd;
             border-radius: 4px;
             width: 368px;
+            min-width: 368px;
+            margin: 1%;
             overflow: hidden;
+            display: inline-grid;
+     
             .header-card {
                 width: 100%;
                 display: inline-flex;
@@ -165,60 +168,67 @@
                     margin: 0;
                 }
             }
-            img{
+            img {
                 margin: 0;
             }
-            .icons-box{
-                margin:0;
-                width: 100%;
-                display: block;
-                padding: 0;
-              li{
-                display: inline;
-                border: none;
-                 i{
-                 color: #333;
+            .icons-box {
+                 padding: 0;
+                li {
+                    display: inline;
+                    border: none;
+                    i {
+                        color: #828282;
+                        margin: 0px 10px;
+                    }
                 }
-
-              }
             }
-           p{
-             margin: 3%;
-             font-size: 14px;
-             text-align: left;
-          }
+            p {
+                margin: 3%;
+                font-size: 14px;
+                text-align: left;
+            }
         }
-    
+
         .instagram-view {
-            .title{
+            .title {
                 line-height: 45px;
             }
             .icon-title {
                 background: linear-gradient(187.5deg, #ef2ea2 5.81%, #e0a22b 109.34%);
             }
             .icons-box {
-                 i{
-                     font-size: 21px;
-                 }
+                i {
+                    font-size: 21px;
+                }
             }
         }
         .linkedin-view {
-            .icon-title{
-                background-color: #2E92EF;
+            .icon-title {
+                background-color: #2e92ef;
             }
             .icons-box {
-                i{
+                i {
                     font-size: 16px;
                 }
-           }
-           .comments{
-               margin: 0;
-               padding: 0 10px;
-               font-size: 12px;
-               border-bottom:1px solid #bdbdbd;
-               width:100%
+            }
+            .comments {
+                margin: 0;
+                padding: 0 10px;
+                font-size: 12px;
+                border-bottom: 1px solid #bdbdbd;
+                width: 100%;
+            }
+        }
+    }
 
-           }
+    .box-scroll {
+        width: 95%;
+        margin: 2.5%;
+        overflow-x: scroll;
+        .show-posts {
+            width: 100%;
+            display: flex;
+           
         }
     }
 }
