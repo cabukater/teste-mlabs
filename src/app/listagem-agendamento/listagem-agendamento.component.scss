@@ -1,3 +1,59 @@
+.table-box{
+	width: 100%;
+	overflow-x: scroll;
+	padding-bottom: 5px;
+}
+
 table{
-   width: 100%; 
+ min-width:1355px; 
+ width: 100%;
+   border-collapse: collapse; 
+}
+tr:nth-of-type(odd) { 
+	background: #eee; 
+	}
+
+th { 
+	background-color:#fff; 
+	font-weight: 500;
+	font-size: 14px;
+	height: 65px;
+
+	}
+
+td, th { 
+	border: 1px solid #ccc; 
+	text-align: left;
+	font-size: 14px;
+	padding-left: 2%;
+}
+.col-small{
+	width: 120px;
+	text-align: center;
+	padding-left: 0 ;
+}
+img{
+    width: 50px;
+}
+
+ul{
+   width: 70%;
+   margin: 0 auto;
+	li{
+	width: 33px;
+		height: 33px;
+	    border-radius: 100%;
+		text-align: center;
+		line-height: 33px;
+	}
+
+}
+
+.status{
+    width: 12px;
+    height: 12px;
+    border-radius: 200%;
+    background-color: #000;
+    float: left;
+    margin: 5px 11px 10px 6px;
 }
