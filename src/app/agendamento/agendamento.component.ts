@@ -24,7 +24,7 @@ export class AgendamentoComponent implements OnInit {
   showInstagram: boolean = false;
   form : FormGroup;
 
-  imageSrc: string;
+  imageSrc: 'assets/img/img1.svg';
 
   constructor(
     private sanitizer: DomSanitizer,

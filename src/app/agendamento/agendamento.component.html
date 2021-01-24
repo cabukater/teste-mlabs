@@ -79,7 +79,7 @@
                                         Anselmo Carlos</h3>
                                 </div>
                                 <img src="assets/img/img1.svg" [hidden]="imageSrc">
-                                <img [src]="imageSrc">
+                                <img [src]="imageSrc" [hidden]="!imageSrc">
                    
                                 <ul class="icons-box">
                                     <li> <i class="far fa-heart"></i></li>
@@ -95,13 +95,13 @@
                                         Anselmo Carlos
                                         <br>
                                         <small>
-                                            {{form.get('data').value}}
+                                            {{form.get('data').value  | date }}
                                         </small>
                                     </h3>
                                 </div>
                                 <p><span *ngIf="form.get('mensagem').value === null">Aqui vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
                                 <img src="assets/img/img1.svg" [hidden]="imageSrc">
-                                <img [src]="imageSrc">
+                                <img [src]="imageSrc" [hidden]="!imageSrc">
                                 <p class="comments small">5 comentários</p>
                                 <ul class="icons-box m-3">
                                     <li> <i class="far fa-thumbs-up"></i></li>
