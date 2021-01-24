@@ -49,19 +49,19 @@
         <div class="lg-6 col-12">
             <div class="box show-lg m-3 lg-h ">
                 <h2> Visualizar post</h2>
-                <div class="not-image" [hidden]="ifPost">
+                <div class="not-image" [hidden]="form.get('social').value[1] === true || form.get('social').value[2] === true">
                     <p>
                         Aguardando conteúdo.Informe os canais e as mídias
                         selecionadas para visualização.
                     </p>
                     <img src="assets/img/post-preview.svg" class="show-lg">
                 </div>
-                <div class="box-scroll" [hidden]="!ifPost">
+                <div class="box-scroll" >
                     <div class="box-scroll" >
                         <div class="show-posts">
-                            <div class="instagram-view card" >
+                            <div class="instagram-view card" *ngIf="form.get('social').value[2] === true" >
                                 <div class="header-card p-5">
-                                    <i class="fab fa-instagram icon-title bg-instagram"></i>
+                                    <i class="fab fa-instagram icon-title bg-instagram" ></i>
                                     <h3 class="title">
                                         Anselmo Carlos</h3>
                                 </div>
@@ -73,7 +73,7 @@
                                 </ul>
                                 <p><span *ngIf="form.get('mensagem').value === null || form.get('mensagem').value === ''">Aqui vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
                             </div>
-                            <div class="linkedin-view card">
+                            <div class="linkedin-view card"  *ngIf="form.get('social').value[1] === true" >
                                 <div class="header-card  p-5">
                                     <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
                                     <h3 class="title">
