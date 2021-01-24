@@ -77,6 +77,9 @@
             padding-left: 30px;
             font-family: "Poppins", sans-serif;
         }
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            display: none;
+        }
     }
     .field-text {
         padding: 10px;

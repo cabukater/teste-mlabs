@@ -11,17 +11,22 @@
                     </li>
                  </ul>
             </div>
-            <div class="box mt-3 mr-3 ml-3">
+            <div class="box mt-3 mr-3 ml-3 col-12 lg-6">
                 <h2>Data publicação</h2>
                 <div class="flex-wrap m-3">
                    <div class="input-group">
                     <i class="fas fa-calendar-alt"
                     (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen"></i>
                     <input type="text" #dp="bsDatepicker"
-                    [bsConfig]="{ dateInputFormat: 'DD/MM' }"
+                    [bsConfig]="{ dateInputFormat: 'DD/MM' , containerClass: 'theme-default'}"
                      bsDatepicker class="btnCal-click" formControlName="data">
                    </div>
-                    <input type="time" class="btnCal-click" formControlName="hora">
+                   <div class="input-group">
+                    <span class="open-button"> <i class="fas fa-clock"
+                    ></i></span>
+                    <input type="time"  class="btnCal-click" formControlName="hora">
+                   </div>
+
                 </div>
             </div>
             <div class="box mt-3 mr-3   col-12">
