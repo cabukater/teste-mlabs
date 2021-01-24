@@ -10,6 +10,7 @@ import { ListaAgendamentosComponent } from './lista/lista-agendamentos.component
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { AgendamentoModule } from './agendamento/agendamento.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 registerLocaleData(localePt);
 
@@ -26,6 +27,7 @@ registerLocaleData(localePt);
     ServicesModule,
     ComponentsModule,
     AgendamentoModule,
+    ModalModule.forRoot(),
 
   ],
   providers:[

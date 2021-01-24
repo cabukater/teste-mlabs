@@ -16,9 +16,7 @@
             border-bottom: 1px solid #e0e0e0;
         }
         ul.social-network {
-            margin: 0;
-            padding: 5%;
-            li {
+             li {
                 width: 33px;
                 height: 33px;
                 line-height: 33px;
@@ -76,7 +74,9 @@
         }
     }
     .input-group {
-        width: 40%;
+        width: 45%;
+        float: left;
+        height: 32px;
         i {
             position: absolute;
             top: 11px;

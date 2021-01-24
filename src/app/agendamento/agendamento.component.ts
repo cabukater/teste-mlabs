@@ -1,3 +1,4 @@
+import { ModalComponent } from './../components/modal/modal.component';
 import { SocialNetwork } from './../models/social.model';
 import { AgendamentoService } from './../services/agendamento-service.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +9,7 @@ import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { DomSanitizer } from '@angular/platform-browser';
 defineLocale('pt-br', ptBrLocale);
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-agendamento',
@@ -23,15 +25,19 @@ export class AgendamentoComponent implements OnInit {
   showPost: string;
   showInstagram: boolean = false;
   form : FormGroup;
+  imageModal: string;
+  textModal: string
 
   imageSrc: string
   statusCheckbox: boolean;
+  bsModalRef: BsModalRef;
 
   constructor(
     private sanitizer: DomSanitizer,
     private localeService: BsLocaleService,
     private agendamento :AgendamentoService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: BsModalService
   ) { 
     localeService.use('pt-br');
     this.imageSrc = 'assets/img/img1.svg';
@@ -80,14 +86,17 @@ export class AgendamentoComponent implements OnInit {
         });
      }
    )}*/
-  save(){
-    console.log(this.form.value)
-  }
 
   handleSelection(event){
-   this.form.get('mensagem').setValue(  
-      this.form.get('mensagem').value +' '+ event.char +' '
+    if(this.form.get('mensagem').value === null){
+      this.form.get('mensagem').setValue(  
+         event.char + '  '
        )
+    }else{
+   this.form.get('mensagem').setValue(  
+      this.form.get('mensagem').value +' '+ event.char + ' '
+     )
+   }
   }
 
   onFileChange(event) {
@@ -108,6 +117,15 @@ export class AgendamentoComponent implements OnInit {
       };
    
     }
+  }
+
+  save(){
+    this.bsModalRef = this.modalService.show(ModalComponent, 
+      {
+        class: 'modal-dialog-centered' 
+      })
+    console.log(this.form.value)
+
   }
    
 }

@@ -3,29 +3,27 @@
         <div class="lg-6 col-12 flex-wrap">
             <div class="box mt-3 mr-3 ">
                 <h2>Redes sociais</h2>
-                <ul class="flex-wrap social-network">
-                    <li  *ngFor="let social of socialNetworks, let i = index"  
-                    formArrayName="social"  [ngClass]="social.status ">
-                        <input [ngClass]="'fab fa-'+social.icon" type="checkbox" [formControlName]="i" [value]="social.id" >
+                <ul class="flex-wrap social-network m-3">
+                    <li *ngFor="let social of socialNetworks, let i = index" formArrayName="social"
+                        [ngClass]="social.status ">
+                        <input [ngClass]="'fab fa-'+social.icon" type="checkbox" [formControlName]="i"
+                            [value]="social.id">
                     </li>
-                 </ul>
+                </ul>
             </div>
             <div class="box mt-3 mr-3 ml-3 col-12 lg-6">
                 <h2>Data publicação</h2>
                 <div class="flex-wrap m-3">
-                   <div class="input-group">
-                    <i class="fas fa-calendar-alt"
-                    (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen"></i>
-                    <input type="text" #dp="bsDatepicker"
-                    [bsConfig]="{ dateInputFormat: 'DD/MM' , containerClass: 'theme-default'}"
-                     bsDatepicker class="btnCal-click" formControlName="data">
-                   </div>
-                   <div class="input-group">
-                    <span class="open-button"> <i class="fas fa-clock"
-                    ></i></span>
-                    <input type="time"  class="btnCal-click" formControlName="hora">
-                   </div>
-
+                    <div class="input-group">
+                        <i class="fas fa-calendar-alt" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen"></i>
+                        <input type="text" #dp="bsDatepicker"
+                            [bsConfig]="{ dateInputFormat: 'DD/MM' , containerClass: 'theme-default'}" bsDatepicker
+                            class="btnCal-click" formControlName="data">
+                    </div>
+                    <div class="input-group">
+                        <span class="open-button"> <i class="fas fa-clock"></i></span>
+                        <input type="time" class="btnCal-click" formControlName="hora">
+                    </div>
                 </div>
             </div>
             <div class="box mt-3 mr-3   col-12">
@@ -41,17 +39,13 @@
             </div>
             <div class="box mt-3 mr-3 mb-3  col-12">
                 <h2>Upload de Imagem</h2>
-
                 <div class="box-upload flex-wrap m-3">
                     <div class="text-center up-box show-lg col-12">
                         <i class="fas fa-cloud-upload-alt"></i>
                         <p>Arraste e solte aqui ou clique no botão abaixo.</p>
                     </div>
-                    <input type="file" 
-                    formControlName="img"
-                    accept="image/png, image/jpeg"
-                    (change)="onFileChange($event)"
-                    class="outline-blue-btn lg-btn">Pesquisar Imagem 
+                    <input type="file" formControlName="img" accept="image/png, image/jpeg"
+                        (change)="onFileChange($event)" class="outline-blue-btn lg-btn">Pesquisar Imagem
                 </div>
             </div>
             <button type="button" class="hidden-lg solid-orange-btn lg-btn m5">
@@ -61,57 +55,60 @@
         <div class="lg-6 col-12">
             <div class="box show-lg mt-3 ml-3 mb-3  lg-h ">
                 <h2> Visualizar post</h2>
-                <div class="not-image" [hidden]="form.get('social').value[1] === true || form.get('social').value[2] === true">
+                <div class="not-image"
+                    [hidden]="form.get('social').value[1] === true || form.get('social').value[2] === true">
                     <p>
                         Aguardando conteúdo.Informe os canais e as mídias
                         selecionadas para visualização.
                     </p>
                     <img src="assets/img/post-preview.svg" class="show-lg">
                 </div>
-                <div class="box-scroll" >
-                    <div class="box-scroll" >
+                <div class="box-scroll">
+                    <div class="box-scroll">
                         <div class="show-posts">
-                            <div class="instagram-view card" *ngIf="form.get('social').value[2] === true" >
-                                <div class="header-card p-5">
-                                    <i class="fab fa-instagram icon-title bg-instagram" ></i>
+                            <div class="instagram-view card" *ngIf="form.get('social').value[2] === true">
+                                <div class="header-card">
+                                    <i class="fab fa-instagram icon-title bg-instagram"></i>
                                     <h3 class="title">
                                         Anselmo Carlos</h3>
                                 </div>
                                 <img [src]="imageSrc">
-                   
+
                                 <ul class="icons-box">
                                     <li> <i class="far fa-heart"></i></li>
                                     <li> <i class="far fa-comment"></i></li>
                                     <li class="float-right"><i class="far fa-bookmark"></i></li>
                                 </ul>
-                                <p><span *ngIf="form.get('mensagem').value === null || form.get('mensagem').value === ''">Aqui vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
+                                <p><span
+                                        *ngIf="form.get('mensagem').value === null || form.get('mensagem').value === ''">Aqui
+                                        vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
                             </div>
-                            <div class="linkedin-view card"  *ngIf="form.get('social').value[1] === true" >
-                                <div class="header-card  p-5">
+                            <div class="linkedin-view card" *ngIf="form.get('social').value[1] === true">
+                                <div class="header-card">
                                     <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
                                     <h3 class="title">
                                         Anselmo Carlos
                                         <br>
                                         <small>
-                                            {{form.get('data').value  | date }}
+                                            {{form.get('data').value | date }}
                                         </small>
                                     </h3>
                                 </div>
-                                <p><span *ngIf="form.get('mensagem').value === null">Aqui vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
-                                <img [src]="imageSrc" >
+                                <p><span *ngIf="form.get('mensagem').value === null">Aqui vai o descritivo desse
+                                        post</span> {{form.get('mensagem').value}}</p>
+                                <img [src]="imageSrc">
                                 <p class="comments small">5 comentários</p>
                                 <ul class="icons-box m-3">
                                     <li> <i class="far fa-thumbs-up"></i></li>
                                     <li> <i class="far fa-comment-alt"></i></li>
                                     <li> <i class="fas fa-share"></i></li>
                                 </ul>
-        
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
-    </div>
     </form>
 </div>
 

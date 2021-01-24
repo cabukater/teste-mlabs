@@ -5,6 +5,8 @@ import { AgendamentoComponent } from './agendamento.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 @NgModule({
   declarations: [
@@ -12,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    ModalModule.forRoot(),
     ReactiveFormsModule,
     NgxEmojiPickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
