@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { DomSanitizer } from '@angular/platform-browser';
 defineLocale('pt-br', ptBrLocale);
 
 @Component({
@@ -22,7 +23,11 @@ export class AgendamentoComponent implements OnInit {
   showPost: string;
   showInstagram: boolean = false;
   form : FormGroup;
+
+  imageSrc: string;
+
   constructor(
+    private sanitizer: DomSanitizer,
     private localeService: BsLocaleService,
     private agendamento :AgendamentoService,
     private fb: FormBuilder
@@ -37,7 +42,7 @@ export class AgendamentoComponent implements OnInit {
       data: [null],
       hora: [null],
       mensagem:[null],
-      imagem:[null], 
+      img:[null], 
       social: new FormArray([])
       });
       this.addCheckboxes();
@@ -74,8 +79,28 @@ private addCheckboxes() {
 
   handleSelection(event){
    this.form.get('mensagem').setValue(  
-      this.form.get('mensagem').value +''+ event.char +''
+      this.form.get('mensagem').value +' '+ event.char +' '
        )
   }
 
+  onFileChange(event) {
+    const reader = new FileReader();
+    
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+    
+      reader.onload = () => {
+   
+        this.imageSrc = reader.result as string;
+     
+        this.form.patchValue({
+          img: reader.result
+        });
+   
+      };
+   
+    }
+  }
+   
 }

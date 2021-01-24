@@ -48,9 +48,11 @@
                         <i class="fas fa-cloud-upload-alt"></i>
                         <p>Arraste e solte aqui ou clique no botão abaixo.</p>
                     </div>
-                    <button type="button" 
-                    (click)="upImage()"
-                    class="outline-blue-btn lg-btn">Pesquisar Imagem </button>
+                    <input type="file" 
+                    formControlName="img"
+                    accept="image/png, image/jpeg"
+                    (change)="onFileChange($event)"
+                    class="outline-blue-btn lg-btn">Pesquisar Imagem 
                 </div>
             </div>
             <button type="button" class="hidden-lg solid-orange-btn lg-btn m5">
@@ -76,7 +78,9 @@
                                     <h3 class="title">
                                         Anselmo Carlos</h3>
                                 </div>
-                                <img src="assets/img/img1.svg">
+                                <img src="assets/img/img1.svg" [hidden]="imageSrc">
+                                <img [src]="imageSrc">
+                   
                                 <ul class="icons-box">
                                     <li> <i class="far fa-heart"></i></li>
                                     <li> <i class="far fa-comment"></i></li>
@@ -96,7 +100,8 @@
                                     </h3>
                                 </div>
                                 <p><span *ngIf="form.get('mensagem').value === null">Aqui vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
-                                <img src="assets/img/img1.svg">
+                                <img src="assets/img/img1.svg" [hidden]="imageSrc">
+                                <img [src]="imageSrc">
                                 <p class="comments small">5 comentários</p>
                                 <ul class="icons-box m-3">
                                     <li> <i class="far fa-thumbs-up"></i></li>
