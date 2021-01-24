@@ -1,14 +1,13 @@
 <div class="container  ">
-    <form class="flex-container">
+    <form class="flex-container" [formGroup]="form">
         <div class="lg-6 col-12 flex-wrap">
             <div class="box m-3">
                 <h2>Redes sociais</h2>
                 <ul class="flex-wrap m-3 social-network">
-                    <li *ngFor="let social of socialNetworks" >
-                      <button [disabled]="social.status === 'disabled'" 
-                         type="button">
-                           <i [ngClass]="'fab fa-'+social.icon" ></i>
-                        </button>
+                    <li *ngFor="let social of socialNetworks, let i = index"  formArrayName="social">
+                        <input type="checkbox" [formControlName]="i" [value]="social.id" >
+                           <i [ngClass]="'fab fa-'+social.icon" >
+                           </i>
                     </li>
                  </ul>
             </div>
@@ -58,43 +57,45 @@
                     <img src="assets/img/post-preview.svg" class="show-lg">
                 </div>
                 <div class="box-scroll" [hidden]="!ifPost">
-                <div class="show-posts">
-                    <div class="instagram-view card">
-                        <div class="header-card p-5">
-                            <i class="fab fa-instagram icon-title bg-instagram"></i>
-                            <h3 class="title">
-                                Anselmo Carlos</h3>
+                    <div class="box-scroll" >
+                        <div class="show-posts">
+                            <div class="instagram-view card" >
+                                <div class="header-card p-5">
+                                    <i class="fab fa-instagram icon-title bg-instagram"></i>
+                                    <h3 class="title">
+                                        Anselmo Carlos</h3>
+                                </div>
+                                <img src="assets/img/img1.svg">
+                                <ul class="icons-box">
+                                    <li> <i class="far fa-heart"></i></li>
+                                    <li> <i class="far fa-comment"></i></li>
+                                    <li class="float-right"><i class="far fa-bookmark"></i></li>
+                                </ul>
+                                <p><span *ngIf="form.get('mensagem').value === null || form.get('mensagem').value === ''">Aqui vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
+                            </div>
+                            <div class="linkedin-view card">
+                                <div class="header-card  p-5">
+                                    <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
+                                    <h3 class="title">
+                                        Anselmo Carlos
+                                        <br>
+                                        <small>
+                                            {{form.get('mensagem').value}}
+                                        </small>
+                                    </h3>
+                                </div>
+                                <p><span *ngIf="form.get('mensagem').value === null">Aqui vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
+                                <img src="assets/img/img1.svg">
+                                <p class="comments small">5 comentários</p>
+                                <ul class="icons-box m-3">
+                                    <li> <i class="far fa-thumbs-up"></i></li>
+                                    <li> <i class="far fa-comment-alt"></i></li>
+                                    <li> <i class="fas fa-share"></i></li>
+                                </ul>
+        
+                            </div>
                         </div>
-                        <img src="assets/img/img1.svg">
-                        <ul class="icons-box">
-                            <li> <i class="far fa-heart"></i></li>
-                            <li> <i class="far fa-comment"></i></li>
-                            <li class="float-right"><i class="far fa-bookmark"></i></li>
-                        </ul>
-                        <p> Aqui vai o texto desse post</p>
                     </div>
-                    <div class="linkedin-view card">
-                        <div class="header-card  p-5">
-                            <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
-                            <h3 class="title">
-                                Anselmo Carlos
-                                <br>
-                                <small>
-                                    06 de Setembro
-                                </small>
-                            </h3>
-                        </div>
-                        <p> Aqui vai o descritivo desse post</p>
-                        <img src="assets/img/img1.svg">
-                        <p class="comments small">5 comentários</p>
-                        <ul class="icons-box m-3">
-                            <li> <i class="far fa-thumbs-up"></i></li>
-                            <li> <i class="far fa-comment-alt"></i></li>
-                            <li> <i class="fas fa-share"></i></li>
-                        </ul>
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>

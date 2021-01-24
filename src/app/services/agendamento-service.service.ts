@@ -11,6 +11,6 @@ export class AgendamentoService {
    }
 
    getSocialNetworks(){
-      return this.http.get(' http://localhost:3000/data')
+      return this.http.get(' http://localhost:3000/data').pipe()
    }
 }

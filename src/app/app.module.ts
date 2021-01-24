@@ -1,3 +1,5 @@
+import { AgendamentoService } from './services/agendamento-service.service';
+import { ServicesModule } from './services/services.module';
 import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -9,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AgendamentoComponent } from './agendamento/agendamento.component';
 import { ListagemAgendamentoComponent } from './listagem-agendamento/listagem-agendamento.component';
 import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,13 @@ import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    ServicesModule,
     ComponentsModule,
-          NgxEmojiPickerModule.forRoot()
+    ReactiveFormsModule,
+    NgxEmojiPickerModule.forRoot()
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
