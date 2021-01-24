@@ -4,10 +4,10 @@
             <div class="box mt-3 mr-3 ">
                 <h2>Redes sociais</h2>
                 <ul class="flex-wrap social-network">
-                    <li *ngFor="let social of socialNetworks, let i = index"  formArrayName="social">
+                    <li  *ngFor="let social of socialNetworks, let i = index"  
+                    formArrayName="social"  [ngClass]="social.status">
                         <input type="checkbox" [formControlName]="i" [value]="social.id" >
-                           <i [ngClass]="'fab fa-'+social.icon" >
-                           </i>
+                           <i [ngClass]="'fab fa-'+social.icon"> </i>
                     </li>
                  </ul>
             </div>
@@ -78,8 +78,7 @@
                                     <h3 class="title">
                                         Anselmo Carlos</h3>
                                 </div>
-                                <img src="assets/img/img1.svg" [hidden]="imageSrc">
-                                <img [src]="imageSrc" [hidden]="!imageSrc">
+                                <img [src]="imageSrc">
                    
                                 <ul class="icons-box">
                                     <li> <i class="far fa-heart"></i></li>
@@ -100,8 +99,7 @@
                                     </h3>
                                 </div>
                                 <p><span *ngIf="form.get('mensagem').value === null">Aqui vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
-                                <img src="assets/img/img1.svg" [hidden]="imageSrc">
-                                <img [src]="imageSrc" [hidden]="!imageSrc">
+                                <img [src]="imageSrc" >
                                 <p class="comments small">5 comentários</p>
                                 <ul class="icons-box m-3">
                                     <li> <i class="far fa-thumbs-up"></i></li>

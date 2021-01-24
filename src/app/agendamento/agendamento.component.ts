@@ -24,7 +24,8 @@ export class AgendamentoComponent implements OnInit {
   showInstagram: boolean = false;
   form : FormGroup;
 
-  imageSrc: 'assets/img/img1.svg';
+  imageSrc: string
+  statusCheckbox: boolean;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -33,11 +34,11 @@ export class AgendamentoComponent implements OnInit {
     private fb: FormBuilder
   ) { 
     localeService.use('pt-br');
+    this.imageSrc = 'assets/img/img1.svg';
   }
 
   ngOnInit() {
-   
-    this.getSocial();
+   this.getSocial();
     this.form = this.fb.group({
       data: [null],
       hora: [null],
@@ -45,34 +46,40 @@ export class AgendamentoComponent implements OnInit {
       img:[null], 
       social: new FormArray([])
       });
-      this.addCheckboxes();
+     
 }
-
-private addCheckboxes() {
-  console.log(this.socialNetworks)
-  this.socialNetworks.forEach((o, i) => {
-  const control = new FormControl(i === 0); // if first item set to true, else false
-  (this.form.controls.social as FormArray).push(control);
-  });
-  }
-
-  upImage(){
-    this.ifPost = true
-  }
 
   getSocial(){
    this.agendamento.getSocialNetworks().subscribe(
      data => {
       this.socialNetworks =  data
       this.socialNetworks.forEach((o, i) => {
-        const control = new FormControl(i === 0); // if first item set to true, else false
+         const control = new FormControl(i === 0);
         (this.form.controls.social as FormArray).push(control);
         });
+
      }
    )
 
   }
 
+/*
+   getSocial(){
+   this.agendamento.getSocialNetworks().subscribe(
+     data => {
+      this.socialNetworks =  data
+      this.socialNetworks.forEach((o, i) => {
+        if(o.status === 'enabled'){
+          this.statusCheckbox = false  
+        } else{
+          this.statusCheckbox = true  
+
+        }   
+        const control = new FormControl({ value:false,  disabled: this.statusCheckbox});
+        (this.form.controls.social as FormArray).push(control);
+        });
+     }
+   )}*/
   save(){
     console.log(this.form.value)
   }
