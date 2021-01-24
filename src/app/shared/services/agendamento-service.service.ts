@@ -11,11 +11,15 @@ export class AgendamentoService {
    }
 
    getSocialNetworks(){
-      return this.http.get(' http://localhost:3000/data').pipe()
+      return this.http.get(' http://localhost:3800/data').pipe()
    }
 
    getSchedules(){
     return this.http.get(' http://localhost:3000/data').pipe()
+
+   }
+   getStatus(){
+    return this.http.get(' http://localhost:3005/data').pipe()
 
    }
 }

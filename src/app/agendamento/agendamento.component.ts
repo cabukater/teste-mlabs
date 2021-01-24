@@ -1,6 +1,6 @@
-import { ModalComponent } from './../components/modal/modal.component';
+import { ModalComponent } from '../shared/components/modal/modal.component';
 import { SocialNetwork } from './../models/social.model';
-import { AgendamentoService } from './../services/agendamento-service.service';
+import { AgendamentoService } from '../shared/services/agendamento-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { DatePipe } from '@angular/common';

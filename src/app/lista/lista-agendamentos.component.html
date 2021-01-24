@@ -9,27 +9,31 @@
                 <th class="col-small"> Redes Sociais</th>
                 <th class="col-small"> Mídia</th>
                 <th> Texto </th>
-                <th> Data </th>
+                <th > Data
+                    <button (click)="sort('publication_date', booleanValue)">Arrow</button> </th>
                 <th  class="col-small"> Ações </th>
                 <th> Status </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let schedule of listSchedules, let li = index">
                 <td class="col-small">
                     <ul class="flex-wrap">
-                       <li class="bg-instagram"> <i class="fab fa-instagram "></i></li>
-                       <li class=" bg-linkedin"> <i class="fab fa-linkedin-in"></i></li>
+                        <li *ngFor="let social of SocialNetwork let i = index"
+                        [hidden]="schedule.social_network_key != social.id"
+                           [ngClass]="'bg-' + social.name">
+                         <i [ngClass]="'fab fa-' + social.icon" ></i>
+                        </li>
                     </ul>
                 </td>
                 <td  class="col-small pl-0">
-                     <img src="assets/img/img1.svg" >
+                     <img [src]="schedule.media" >
                 </td>
                 <td>
-                    <p> Aqui vai o texto descritivo desse post</p>
+                    <p> {{schedule.text}}</p>
                 </td>
                 <td>
-                    <p>22/12/2020 as 14:45</p>
+                    <p>{{schedule.publication_date | date }}</p>
                 </td>
 
                 <td  class="text-center">
@@ -37,138 +41,13 @@
                 </td>
 
                 <td>
-                    <i class="status"> </i>
-                    Agendado
-                </td>
-            </tr>
-            <tr>
-                <td class="col-small">
-                    <ul class="flex-wrap">
-                       <li class="bg-instagram"> <i class="fab fa-instagram "></i></li>
-                       <li class=" bg-linkedin"> <i class="fab fa-linkedin-in"></i></li>
-                    </ul>
-                </td>
-                <td  class="col-small pl-0">
-                     <img src="assets/img/img1.svg" >
-                </td>
-                <td>
-                    <p> Aqui vai o texto descritivo desse post</p>
-                </td>
-                <td>
-                    <p>22/12/2020 as 14:45</p>
-                </td>
-
-                <td  class="text-center">
-                    <a href="#">Preview</a>
-                </td>
-
-                <td>
-                    <i class="status"> </i>
-                    Agendado
-                </td>
-            </tr>
-            <tr>
-                <td class="col-small">
-                    <ul class="flex-wrap">
-                       <li class="bg-instagram"> <i class="fab fa-instagram "></i></li>
-                       <li class=" bg-linkedin"> <i class="fab fa-linkedin-in"></i></li>
-                    </ul>
-                </td>
-                <td  class="col-small pl-0">
-                     <img src="assets/img/img1.svg" >
-                </td>
-                <td>
-                    <p> Aqui vai o texto descritivo desse post</p>
-                </td>
-                <td>
-                    <p>22/12/2020 as 14:45</p>
-                </td>
-
-                <td  class="text-center">
-                    <a href="#">Preview</a>
-                </td>
-
-                <td>
-                    <i class="status"> </i>
-                    Agendado
-                </td>
-            </tr>
-            <tr>
-                <td class="col-small">
-                    <ul class="flex-wrap">
-                       <li class="bg-instagram"> <i class="fab fa-instagram "></i></li>
-                       <li class=" bg-linkedin"> <i class="fab fa-linkedin-in"></i></li>
-                    </ul>
-                </td>
-                <td  class="col-small pl-0">
-                     <img src="assets/img/img1.svg" >
-                </td>
-                <td>
-                    <p> Aqui vai o texto descritivo desse post</p>
-                </td>
-                <td>
-                    <p>22/12/2020 as 14:45</p>
-                </td>
-
-                <td  class="text-center">
-                    <a href="#">Preview</a>
-                </td>
-
-                <td>
-                    <i class="status"> </i>
-                    Agendado
-                </td>
-            </tr>
-            <tr>
-                <td class="col-small">
-                    <ul class="flex-wrap">
-                       <li class="bg-instagram"> <i class="fab fa-instagram "></i></li>
-                       <li class=" bg-linkedin"> <i class="fab fa-linkedin-in"></i></li>
-                    </ul>
-                </td>
-                <td  class="col-small pl-0">
-                     <img src="assets/img/img1.svg" >
-                </td>
-                <td>
-                    <p> Aqui vai o texto descritivo desse post</p>
-                </td>
-                <td>
-                    <p>22/12/2020 as 14:45</p>
-                </td>
-
-                <td  class="text-center">
-                    <a href="#">Preview</a>
-                </td>
-
-                <td>
-                    <i class="status"> </i>
-                    Agendado
-                </td>
-            </tr>
-            <tr>
-                <td class="col-small">
-                    <ul class="flex-wrap">
-                       <li class="bg-instagram"> <i class="fab fa-instagram "></i></li>
-                       <li class=" bg-linkedin"> <i class="fab fa-linkedin-in"></i></li>
-                    </ul>
-                </td>
-                <td  class="col-small pl-0">
-                     <img src="assets/img/img1.svg" >
-                </td>
-                <td>
-                    <p> Aqui vai o texto descritivo desse post</p>
-                </td>
-                <td>
-                    <p>22/12/2020 as 14:45</p>
-                </td>
-
-                <td  class="text-center">
-                    <a href="#">Preview</a>
-                </td>
-
-                <td>
-                    <i class="status"> </i>
-                    Agendado
+                  
+   
+                    <span *ngFor="let status of status" 
+                    [hidden]="schedule.status_key != status.id">
+                    <i [ngClass]="status" [style]="'background-color:'+ status.color"> </i>
+                        {{status.name}}
+                    </span>
                 </td>
             </tr>
 

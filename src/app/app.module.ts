@@ -1,5 +1,3 @@
-import { ServicesModule } from './services/services.module';
-import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +9,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { AgendamentoModule } from './agendamento/agendamento.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(localePt);
 
@@ -18,15 +17,14 @@ registerLocaleData(localePt);
   declarations: [
     AppComponent,
     HomeComponent,
-    ListaAgendamentosComponent
+    ListaAgendamentosComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    ServicesModule,
-    ComponentsModule,
     AgendamentoModule,
+    SharedModule,
     ModalModule.forRoot(),
 
   ],
