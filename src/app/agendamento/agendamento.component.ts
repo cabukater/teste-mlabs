@@ -72,8 +72,10 @@ private addCheckboxes() {
     console.log(this.form.value)
   }
 
-  handleSelection(){
-
+  handleSelection(event){
+   this.form.get('mensagem').setValue(  
+      this.form.get('mensagem').value +''+ event.char +''
+       )
   }
 
 }
