@@ -14,14 +14,14 @@
             <div class="box m-3">
                 <h2>Data publicação</h2>
                 <div class="flex-wrap m-3">
-                    <input type="date" class="btnCal-click">
-                    <input type="time" class="btnCal-click">
+                    <input type="date" class="btnCal-click" formControlName="data">
+                    <input type="time" class="btnCal-click" formControlName="hora">
                 </div>
             </div>
             <div class="box m-3  col-12">
                 <h2>Texto do Post</h2>
                 <div class="field-text flex-wrap m-3">
-                    <textarea placeholder="Aqui vai o texto descritivo do post"></textarea>
+                    <textarea placeholder="Aqui vai o texto descritivo do post" formControlName="mensagem"></textarea>
                     <button class="emoji-btn" type="button" (click)="toggled = !toggled" [(emojiPickerIf)]="toggled"
                         [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
                         (emojiPickerSelect)="handleSelection($event)">
@@ -105,7 +105,7 @@
 <div class="footer">
     <div class="container flex-end">
         <button class="md-btn transparent-btn" type="button">Cancelar</button>
-        <button class="md-btn outline-blue-btn" type="button">Salvar rascunho</button>
+        <button class="md-btn outline-blue-btn" type="button" (click)="save()">Salvar rascunho</button>
         <button class="md-btn solid-blue-btn" type="button">Agendar</button>
     </div>
 </div>
