@@ -1,4 +1,4 @@
-import { ListagemAgendamentoComponent } from './listagem-agendamento/listagem-agendamento.component';
+import { ListaAgendamentosComponent } from './lista/lista-agendamentos.component';
 import { AgendamentoComponent } from './agendamento/agendamento.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '*', component:HomeComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: 'agendamento', component: AgendamentoComponent },
-  { path: 'lista', component: ListagemAgendamentoComponent },
+  { path: 'lista', component: ListaAgendamentosComponent },
 
 ];
 
