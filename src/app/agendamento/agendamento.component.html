@@ -5,9 +5,8 @@
                 <h2>Redes sociais</h2>
                 <ul class="flex-wrap social-network">
                     <li  *ngFor="let social of socialNetworks, let i = index"  
-                    formArrayName="social"  [ngClass]="social.status">
-                        <input type="checkbox" [formControlName]="i" [value]="social.id" >
-                           <i [ngClass]="'fab fa-'+social.icon"> </i>
+                    formArrayName="social"  [ngClass]="social.status ">
+                        <input [ngClass]="'fab fa-'+social.icon" type="checkbox" [formControlName]="i" [value]="social.id" >
                     </li>
                  </ul>
             </div>

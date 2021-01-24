@@ -54,7 +54,7 @@ export class AgendamentoComponent implements OnInit {
      data => {
       this.socialNetworks =  data
       this.socialNetworks.forEach((o, i) => {
-         const control = new FormControl(i === 0);
+         const control = new FormControl(false);
         (this.form.controls.social as FormArray).push(control);
         });
 

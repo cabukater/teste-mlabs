@@ -22,6 +22,12 @@
                 width: 33px;
                 height: 33px;
                 line-height: 33px;
+                &.disabled{
+                    input[type="checkbox"]{
+                        background-color: #DDDDDD;
+                        color: #989898
+                    }
+                }
                 input[type="checkbox"] {
                     cursor: pointer;
                     border-radius: 100%;
@@ -29,15 +35,25 @@
                     -webkit-appearance: none;
                     width: 33px;
                     height: 33px;
+                    text-align: center;
                     position: absolute;
                     z-index: 9;
+                    border:1px solid #9E9E9E;
+
                     line-height: 33px;
                     background-color: transparent;
+                    &:hover{
+                        background: #FFF3E0;
+                        border: 1px solid #EF9F2E; 
+                        color: #EF9F2E;
+                    }
                     &:checked {
-                        background-color: #333;
+                        background: linear-gradient(135deg, #EF9F2E 25%, #E02B4B 105.56%);
+                        border: 1px solid #EF9F2E;
                         color: #fff;
                         -webkit-appearance: none;
                     }
+
                 }
                 i {
                     text-align: center;
