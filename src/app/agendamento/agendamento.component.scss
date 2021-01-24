@@ -6,10 +6,10 @@
         flex: 5 5 auto;
         border: 1px solid #e0e0e0;
         h2 {
-            line-height: 20px;
+            line-height: 33px;
             font-size: 16px;
             font-weight: 500;
-            height: 20px;
+            height: 33px;
             color: 333333;
             padding-left: 3%;
             padding-bottom: 1%;
@@ -33,45 +33,50 @@
                     z-index: 9;
                     line-height: 33px;
                     background-color: transparent;
-                     &:checked {
+                    &:checked {
                         background-color: #333;
                         -webkit-appearance: none;
                     }
                 }
-                    i {
-                       text-align: center;
-                        color: #333;
-                        font-size: 16px;
-                        font-weight: 600;
-                       position: relative;
-                        /* margin: 0 auto; */
-                        width: 100%;
-                        z-index: 8;
-                   
+                i {
+                    text-align: center;
+                    color: #333;
+                    font-size: 16px;
+                    font-weight: 600;
+                    position: relative;
+                    /* margin: 0 auto; */
+                    width: 100%;
+                    z-index: 8;
+                }
+                &:disabled {
+                    background-color: #ddd;
+                    border: 0.5px solid #9e9e9e;
+                    & i {
+                        color: #989898;
                     }
-                    &:disabled {
-                        background-color: #ddd;
-                        border: 0.5px solid #9e9e9e;
-                        & i {
-                            color: #989898;
-                        }
-                    }
-
                 }
             }
-        
+        }
     }
-
-    input {
+    .input-group {
         width: 40%;
-        height: 32px;
-        padding: 10px;
-        font-size: 14px;
-        text-transform: uppercase;
-        color: #828282;
-        border-radius: 4px;
-        border: 1px solid #949494;
-        font-family: "Poppins", sans-serif;
+        i {
+            position: absolute;
+            top: 11px;
+            left: 11px;
+        }
+        input {
+            width: 100%;
+            height: 42px;
+            padding: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #828282;
+            border-radius: 4px;
+            border: 1px solid #949494;
+            padding-left: 30px;
+            font-family: "Poppins", sans-serif;
+        }
     }
     .field-text {
         padding: 10px;
@@ -134,7 +139,7 @@
 
 @media screen and (min-width: 768px) {
     .field-text {
-        height: 106px !important;
+        height: 214px !important;
     }
     .box.show-lg {
         p {
@@ -146,7 +151,7 @@
     }
     img {
         margin: 0 auto;
-        margin-bottom: 20%;
+        margin-bottom: 5%;
     }
     .footer {
         .lg-6 {

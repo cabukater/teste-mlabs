@@ -2,6 +2,11 @@ import { SocialNetwork } from './../models/social.model';
 import { AgendamentoService } from './../services/agendamento-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+defineLocale('pt-br', ptBrLocale);
 
 @Component({
   selector: 'app-agendamento',
@@ -13,18 +18,20 @@ export class AgendamentoComponent implements OnInit {
   message: string;
   ifPost = false;
   socialNetworks :any= [];
+  locale = 'pt-br';
   showPost: string;
-
   showInstagram: boolean = false;
   form : FormGroup;
   constructor(
+    private localeService: BsLocaleService,
     private agendamento :AgendamentoService,
     private fb: FormBuilder
   ) { 
-   
+    localeService.use('pt-br');
   }
 
   ngOnInit() {
+   
     this.getSocial();
     this.form = this.fb.group({
       data: [null],
