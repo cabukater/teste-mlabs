@@ -16,7 +16,7 @@
                     <div class="input-group">
                         <i class="fas fa-calendar-alt" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen"></i>
                         <input type="text" #dp="bsDatepicker" required
-                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' , containerClass: 'theme-default'}" bsDatepicker
+                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers : false, containerClass: 'theme-default'}" bsDatepicker
                             class="input-field" formControlName="data">
                         <span *ngIf="ifError && form.controls.data.invalid" class="alert-danger">
                             Informe uma data
