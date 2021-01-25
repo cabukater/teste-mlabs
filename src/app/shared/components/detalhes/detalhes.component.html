@@ -1,38 +1,40 @@
-
-<div class="preview-post" >
+<div class="preview-post">
     <div class="box show-lg">
         <h2 class="title"> Visualizar post</h2>
         <div class="box-scroll">
             <div class="box-scroll">
                 <div class="show-posts">
-                    <div class="instagram-view card"  *ngIf="showInstagram">
-                        <div class="header-card">
-                            <i class="fab fa-instagram icon-title bg-instagram"></i>
-                            <h3 class="title">
-                                Anselmo Carlos</h3>
-                        </div>
+                    <div class="instagram-view card" *ngIf="showInstagram">
+                        <div class="header-card flex-container">
+                            <div class="box-icon">
+                                <i class="fab fa-instagram icon-title bg-instagram"></i>
+                            </div>
+                            <div class="box-title">
+                                <h3 class="instagram"> Anselmo Carlos</h3>
+                            </div>
+                         </div>
                         <img [src]="image">
                         <ul class="icons-box">
                             <li> <i class="far fa-heart"></i></li>
                             <li> <i class="far fa-comment"></i></li>
                             <li class="float-right"><i class="far fa-bookmark"></i></li>
                         </ul>
-                        <p>{{postDetail.text}}</p>
+                       <p  class="mrgL-3 mrgT-3">{{postDetail.text}}</p>
                     </div>
-                    <div class="linkedin-view card" *ngIf="showLinkedin" >
+                    <div class="linkedin-view card" *ngIf="showLinkedin">
                         <div class="header-card">
-                            <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
-                            <h3 class="title">
-                                Anselmo Carlos
-                                <br>
-                                <small>
-                                    <p>{{postDetail.publication_date | date }}</p>
-                                </small>
-                            </h3>
+                            <div class="box-icon">
+                                <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
+ 
+                                </div>
+                                <div class="box-title">
+                                   <h3 class="linkedin"> Anselmo Carlos</h3>
+                                    <p class="small">{{dataPost | date }}</p>
+                                </div>
                         </div>
-                        <p>{{postDetail.text}}</p>
+                        <p  class="mrgL-3 mrgT-3">{{postDetail.text}}</p>
                         <img [src]="image">
-                          <p class="comments small">5 comentários</p>
+                        <p class="comments small">5 comentários</p>
                         <ul class="icons-box mrg-3">
                             <li> <i class="far fa-thumbs-up"></i></li>
                             <li> <i class="far fa-comment-alt"></i></li>

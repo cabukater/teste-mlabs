@@ -10,12 +10,16 @@ export class DetalhesComponent implements OnInit {
   @Input() postDetail: any;
   @Input() showInstagram : boolean;
   @Input() showLinkedin : boolean;
-  @Input() image: boolean
+  @Input() image: boolean;
+  @Input() dataPost;
   constructor() { }
 
   ngOnInit() {
+    
+    if(this.postDetail.text === null || this.postDetail.text === ''){
+      console.log('veio vazio')
+    }
     console.log(this.postDetail.social_network_key)
-    this.image = this.postDetail.media;
     let index = this.postDetail.social_network_key.filter(social_network_key => {
       if(social_network_key === 2){
         this.showLinkedin = true

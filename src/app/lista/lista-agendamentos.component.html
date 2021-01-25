@@ -41,11 +41,10 @@
                            <app-detalhes
                              [image]="schedule.media"
                              [postDetail]="schedule"
+                             [data]="schedule.publication_date"
                              [showInstagram]="true"
                              [showLinkedin]="true"
-                            ></app-detalhes>
-
-                    </td>
+                            ></app-detalhes>                    </td>
                     <td>
                         <span *ngFor="let status of status" [hidden]="schedule.status_key != status.id">
                             <i class="status" [style.background-color]="status.color"> </i>

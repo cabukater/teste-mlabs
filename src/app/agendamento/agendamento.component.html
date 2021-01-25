@@ -58,10 +58,10 @@
         </div>
         <div class="lg-6 colun-12">
             <div class="box show-lg mrgT-3  mrgL-3 mrgb-3  lg-h ">
-  
-               <app-detalhes
+              <app-detalhes
                [hidden]="!form.get('social_network_key')"
                [image]="imageSrc"
+               [dataPost]="form.get('data').value"
                 [postDetail]="form.value"
                 [showInstagram]="form.get('social_network_key').value[2] === true"
                 [showLinkedin]="form.get('social_network_key').value[1] === true"
@@ -83,7 +83,7 @@
 <div class="footer">
     <div class="container flex-end">
         <button class="md-btn transparent-btn" type="button">Cancelar</button>
-        <button class="md-btn outline-blue-btn" type="button" (click)="save()">Salvar rascunho</button>
+        <button class="md-btn outline-blue-btn" type="button" (click)="save()" >Salvar rascunho</button>
         <button class="md-btn solid-blue-btn" type="button">Agendar</button>
     </div>
 </div>

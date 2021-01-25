@@ -27,8 +27,7 @@ export class AgendamentoComponent implements OnInit {
   form : FormGroup;
   imageModal: string;
   textModal: string
-
-  imageSrc: string
+  imageSrc: string;
   statusCheckbox: boolean;
   bsModalRef: BsModalRef;
 
@@ -40,15 +39,16 @@ export class AgendamentoComponent implements OnInit {
     private modalService: BsModalService
   ) { 
     localeService.use('pt-br');
-    this.imageSrc = 'assets/img/img1.svg';
+    
   }
 
   ngOnInit() {
+    this.imageSrc = 'assets/img/img1.svg';
    this.getSocial();
     this.form = this.fb.group({
       data: [null],
       hora: [null],
-      text:[null],
+      text:['Aqui vai o texto descritivo do post'],
       img:[null], 
       social_network_key: new FormArray([])
       });

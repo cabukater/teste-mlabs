@@ -5,7 +5,7 @@
         order: 0;
         flex: 5 5 auto;
         border: 1px solid #e0e0e0;
-
+  
         ul.social-network {
              li {
                 width: 33px;
@@ -152,12 +152,13 @@
     .field-text {
         height: 214px !important;
     }
+
     .box.show-lg {
         p {
             text-align: center;
             width: 100%;
             max-width: 420px;
-            margin: 12% auto;
+            margin: 20px auto;
         }
     }
     img {

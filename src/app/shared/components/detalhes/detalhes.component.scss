@@ -1,34 +1,54 @@
-
 .show-posts {
 	.card {
 		border: 1px solid #bdbdbd;
 		border-radius: 4px;
-		width: 368px;
+		max-width: 368px;
+		width: 100%;
 		min-width: 368px;
 		margin: 1%;
 		overflow: hidden;
 		display: inline-grid;
-
 		.header-card {
 			width: 100%;
 			display: inline-flex;
-			.icon-title {
-				width: 45px;
-				height: 45px;
-				line-height: 45px;
-				text-align: center;
-				font-size: 30px;
-				border-radius: 100%;
-				color: #fff;
+			.box-icon {
+				width: 20%;
 				float: left;
-				margin-right: 10px;
+				padding: 3%;
+
+				.icon-title {
+					width: 45px;
+					height: 45px;
+					line-height: 45px;
+					text-align: center;
+					font-size: 30px;
+					border-radius: 100%;
+					color: #fff;
+					float: left;
+					margin-right: 10px;
+				}
 			}
-			.title {
-				font-size: 14px;
-				font-weight: 500;
-				height: 45px;
-				float: left;
-				margin: 0;
+			.box-title {
+				width: 80%;
+				float: right;
+				height: 100%;
+				.instagram{
+			      height: 55px;
+                  line-height: 66px;
+				}
+				.linkedin{
+					margin-top: 15px;
+					margin-bottom: 0;
+				}
+				h3 {
+					font-size: 14px;
+					font-weight: 500; 
+			         width: 100%;
+				}
+				p{
+					margin: 0;
+				}
+				
 			}
 		}
 		img {
@@ -48,9 +68,11 @@
 			}
 		}
 		p {
-			margin: 3%;
 			font-size: 14px;
 			text-align: left;
+		}
+		.small{
+			font-size: 12px;
 		}
 	}
 
@@ -88,13 +110,9 @@
 		width: 100%;
 		display: flex;
 	}
-
-
-
 }
 
-.preview-post{
-
-	background-color:#fff;
-	right:0
+.preview-post {
+	background-color: #fff;
+	right: 0;
 }
