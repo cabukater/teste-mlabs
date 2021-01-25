@@ -2,7 +2,7 @@
     <button *ngIf="modalClose" (click)="close()" class="button-modal">
         <i class="fas fa-times"></i>
     </button>
-    <div class="box">
+    <div class="box" (click)="close()" >
         <h2 class="title"> Visualizar post</h2>
         <div class="box-scroll">
                 <div class="show-posts">

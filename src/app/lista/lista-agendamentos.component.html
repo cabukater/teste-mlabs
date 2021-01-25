@@ -36,10 +36,10 @@
                     <td>
                         <p>{{schedule.publication_date | date : 'dd/MM/yyyy hh:mm'}}</p>
                     </td>
-                    <td class="text-center pl-0">
-                        <button (click)="detailItemView = li">Preview</button>
+                    <td>
+                        <button (click)="showDetailsView(li)" class="btn-preview">Preview</button>
                            <app-detalhes
-                             *ngIf="detailItemView === li "
+                             *ngIf="showDetails === li "
                              [image]="schedule.media"
                              [postDetail]="schedule"
                              [data]="schedule.publication_date"

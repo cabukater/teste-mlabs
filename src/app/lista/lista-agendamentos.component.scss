@@ -26,6 +26,7 @@ td, th {
 	text-align: left;
 	font-size: 14px;
 	padding-left: 2%;
+
 }
 .col-small{
 	width: 120px;
@@ -43,6 +44,14 @@ img{
 	height: 50px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.btn-preview{
+	border:none;
+	color: #1661F3;
+	text-decoration: underline;
+	outline: none;
+
 }
 
 ul{
@@ -68,7 +77,8 @@ ul{
 }
 app-detalhes{
 	position: absolute;
-    right: 0;
-    margin-top: 29px;
-  
+    right: 30px;
+	margin-top: 29px;
+	border: 1px solid #e0e0e0;
+	
   }

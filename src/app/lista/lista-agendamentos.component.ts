@@ -70,10 +70,14 @@ export class ListaAgendamentosComponent implements OnInit {
       this.booleanValue = !this.booleanValue
     }
   }
-  detailItem (event) {
-   console.log(event)
+  showDetailsView (event) {
+    if (this.showDetails == event) {
+      this.showDetails = -1;
+    }
+    else {
+      this.showDetails = event;
+    }
 
   }
 
 }
-
