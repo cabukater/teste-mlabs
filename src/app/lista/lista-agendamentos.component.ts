@@ -69,10 +69,12 @@ export class ListaAgendamentosComponent implements OnInit {
   }
   detailItem (event) {
     const elementContainerRef = this.viewContainerRef;
+    elementContainerRef.clear();
+
      const detail  = elementContainerRef.createComponent(
        this.componentFactoryResolver.resolveComponentFactory(DetalhesComponent) );
          detail.instance.postDetail = event;   
-         console.log(event)
+       
   }
 
 }

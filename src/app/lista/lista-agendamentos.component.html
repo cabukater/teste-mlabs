@@ -1,100 +1,52 @@
 <div class="container m-3">
     <h2 class="title">
-        Lista de agendamento 
+        Lista de agendamento
     </h2>
-<div  class="table-box">   
-    <table>
-        <thead>
-            <tr>
-                <th class="col-small"> Redes Sociais</th>
-                <th class="col-small"> Mídia</th>
-                <th> Texto </th>
-                <th > Data
-                    <button (click)="sort('publication_date', booleanValue)">Arrow</button> </th>
-                <th  class="col-small"> Ações </th>
-                <th> Status </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let schedule of listSchedules, let li = index">
-                <td class="col-small">
-                    <ul class="flex-wrap">
-                      <li *ngFor="let socialNet of schedule.social_network_key" >
-                            <div *ngFor="let social of SocialNetwork"  [ngClass]="'bg-' + social.name">
-                                <i [ngClass]="'fab fa-' + social.icon" [hidden]="socialNet != social.id" ></i>
-                            </div>
-                        </li>
-                    </ul>
-                </td>
-                <td  class="col-small pl-0">
-                     <img [src]="schedule.media" >
-                </td>
-                <td>
-                    <p> {{schedule.text}}</p>
-                </td>
-                <td>
-                    <p>{{schedule.publication_date | date }}</p>
-                </td>
-
-                <td  class="text-center">
-                    <button  (click)="detailItem(schedule)">Preview</button>
-                </td>
-
-                <td>
-                <span *ngFor="let status of status" [hidden]="schedule.status_key != status.id" >
-                    <i class="status" [style.background-color]="status.color"> </i>
-                        {{status.name}}
-                    </span>
-                </td>
-                <div class="preview-post" [hidden]="true" >
-                    <div class="box show-lg mt-3 ml-3 mb-3  lg-h ">
-                        <h2> Visualizar post</h2>
-                        <div class="box-scroll">
-                            <div class="box-scroll">
-                                <div class="show-posts">
-                                    <div class="instagram-view card">
-                                        <div class="header-card">
-                                            <i class="fab fa-instagram icon-title bg-instagram"></i>
-                                            <h3 class="title">
-                                                Anselmo Carlos</h3>
-                                        </div>
-                                        <img [src]="schedule.media">
-        
-                                        <ul class="icons-box">
-                                            <li> <i class="far fa-heart"></i></li>
-                                            <li> <i class="far fa-comment"></i></li>
-                                            <li class="float-right"><i class="far fa-bookmark"></i></li>
-                                        </ul>
-                                        <p>{{schedule.text}}</p>
-                                    </div>
-                                    <div class="linkedin-view card" >
-                                        <div class="header-card">
-                                            <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
-                                            <h3 class="title">
-                                                Anselmo Carlos
-                                                <br>
-                                                <small>
-                                                    <p>{{schedule.publication_date | date }}</p>
-                                                </small>
-                                            </h3>
-                                        </div>
-                                        <p>{{schedule.text}}</p>
-                                        <img [src]="schedule.media">
-                                        <p class="comments small">5 comentários</p>
-                                        <ul class="icons-box m-3">
-                                            <li> <i class="far fa-thumbs-up"></i></li>
-                                            <li> <i class="far fa-comment-alt"></i></li>
-                                            <li> <i class="fas fa-share"></i></li>
-                                        </ul>
-                                    </div>
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-small"> Redes Sociais</th>
+                    <th class="col-small"> Mídia</th>
+                    <th> Texto </th>
+                    <th> Data
+                        <button (click)="sort('publication_date', booleanValue)">Arrow</button>
+                    </th>
+                    <th class="col-small"> Ações </th>
+                    <th> Status </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let schedule of listSchedules, let li = index">
+                    <td class="col-small">
+                        <ul class="flex-wrap">
+                            <li *ngFor="let socialNet of schedule.social_network_key">
+                                <div *ngFor="let social of SocialNetwork" [ngClass]="'bg-' + social.name">
+                                    <i [ngClass]="'fab fa-' + social.icon" [hidden]="socialNet != social.id"></i>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </tr>
-
-        </tbody>
-    </table>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="col-small pl-0">
+                        <img [src]="schedule.media">
+                    </td>
+                    <td>
+                        <p> {{schedule.text}}</p>
+                    </td>
+                    <td>
+                        <p>{{schedule.publication_date | date }}</p>
+                    </td>
+                    <td class="text-center">
+                        <button (click)="detailItem(schedule)">Preview</button>
+                    </td>
+                    <td>
+                        <span *ngFor="let status of status" [hidden]="schedule.status_key != status.id">
+                            <i class="status" [style.background-color]="status.color"> </i>
+                            {{status.name}}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
