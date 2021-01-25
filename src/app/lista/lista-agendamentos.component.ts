@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-agendamentos.component.scss']
 })
 export class ListaAgendamentosComponent implements OnInit {
-  listSchedules :any= [];
-  SocialNetwork:any= [];
-  status:any= [];
+  listSchedules: any = [];
+  SocialNetwork: any = [];
+  status: any = [];
   booleanValue: any = false;
-
+  showIndex = false;
   constructor(
-    private agendamento : AgendamentoService
+    private agendamento: AgendamentoService
   ) { }
 
   ngOnInit() {
@@ -23,43 +23,46 @@ export class ListaAgendamentosComponent implements OnInit {
     this.getSocialNetwork()
   }
 
-  getSchudules(){
+  getSchudules() {
     this.agendamento.getSchedules().subscribe(
       data => {
         console.log(data)
         this.listSchedules = data
       }
     )
- 
-   }
 
-   getStatus(){
+  }
+
+  getStatus() {
     this.agendamento.getStatus().subscribe(
       status => {
         console.log(status)
         this.status = status
       }
     )
-   }
+  }
 
-   getSocialNetwork(){
+  getSocialNetwork() {
     this.agendamento.getSocialNetworks().subscribe(
       status => {
         console.log(status)
         this.SocialNetwork = status
       }
     )
-   }
+  }
 
-   sort(coluna, boolean) {
-    if (boolean == true){
+  sort(coluna, boolean) {
+    if (boolean == true) {
       this.listSchedules.sort((a, b) => a[coluna] < b[coluna] ? 1 : a[coluna] > b[coluna] ? -1 : 0)
       this.booleanValue = !this.booleanValue
-  }
-  else{
+    }
+    else {
       this.listSchedules.sort((a, b) => a[coluna] > b[coluna] ? 1 : a[coluna] < b[coluna] ? -1 : 0)
       this.booleanValue = !this.booleanValue
+    }
   }
-   }
+  showDetails(){
+
+  }
 
 }

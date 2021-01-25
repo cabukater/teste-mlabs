@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-modal',
@@ -6,11 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  @Input('imageModal') imageModal : string ;
-  @Input('textModal') textModal : string;
-  constructor() { }
+
+  constructor(
+    private bsModalRef: BsModalRef,
+    private router: Router) { }
 
   ngOnInit() {
+  }
+
+  goToList(){
+    this.router.navigate(['lista']);
+    this.bsModalRef.hide()
   }
 
 }
