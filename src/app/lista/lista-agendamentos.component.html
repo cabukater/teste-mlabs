@@ -19,12 +19,10 @@
             <tr *ngFor="let schedule of listSchedules, let li = index">
                 <td class="col-small">
                     <ul class="flex-wrap">
-                  
-                        <li *ngFor="let socialNet of schedule.social_network_key" >
-                            <span *ngFor="let social of SocialNetwork"  >
-                                <i [ngClass]="'fab fa-' + social.icon" [hidden]="socialNet != social.id"  [ngClass]="'bg-' + social.name"></i>
-                            </span>
-                        
+                      <li *ngFor="let socialNet of schedule.social_network_key" >
+                            <div *ngFor="let social of SocialNetwork"  [ngClass]="'bg-' + social.name">
+                                <i [ngClass]="'fab fa-' + social.icon" [hidden]="socialNet != social.id" ></i>
+                            </div>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +37,7 @@
                 </td>
 
                 <td  class="text-center">
-                    <button (click)="schedule[li].toggle=!schedule[li].toggle">Preview</button>
+                    <button  (click)="detailItem(schedule)">Preview</button>
                 </td>
 
                 <td>
@@ -51,7 +49,6 @@
                 <div class="preview-post" [hidden]="true" >
                     <div class="box show-lg mt-3 ml-3 mb-3  lg-h ">
                         <h2> Visualizar post</h2>
-
                         <div class="box-scroll">
                             <div class="box-scroll">
                                 <div class="show-posts">

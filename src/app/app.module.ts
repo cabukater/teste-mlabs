@@ -10,6 +10,7 @@ import localePt from '@angular/common/locales/pt';
 import { AgendamentoModule } from './agendamento/agendamento.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
+import { ListaModule } from './lista/lista.module';
 
 registerLocaleData(localePt);
 
@@ -24,6 +25,7 @@ registerLocaleData(localePt);
     BrowserModule,
     AppRoutingModule,
     AgendamentoModule,
+    ListaModule,
     SharedModule,
     ModalModule.forRoot(),
 

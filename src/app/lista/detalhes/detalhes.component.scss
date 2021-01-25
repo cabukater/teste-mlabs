@@ -1,0 +1,97 @@
+
+.show-posts {
+	.card {
+		border: 1px solid #bdbdbd;
+		border-radius: 4px;
+		width: 368px;
+		min-width: 368px;
+		margin: 1%;
+		overflow: hidden;
+		display: inline-grid;
+
+		.header-card {
+			width: 100%;
+			display: inline-flex;
+			.icon-title {
+				width: 45px;
+				height: 45px;
+				line-height: 45px;
+				text-align: center;
+				font-size: 30px;
+				border-radius: 100%;
+				color: #fff;
+				float: left;
+				margin-right: 10px;
+			}
+			.title {
+				font-size: 14px;
+				font-weight: 500;
+				height: 45px;
+				float: left;
+				margin: 0;
+			}
+		}
+		img {
+			margin: 0;
+			width: 368px;
+			height: 368px;
+		}
+		.icons-box {
+			padding: 0;
+			li {
+				display: inline;
+				border: none;
+				i {
+					color: #828282;
+					margin: 0px 10px;
+				}
+			}
+		}
+		p {
+			margin: 3%;
+			font-size: 14px;
+			text-align: left;
+		}
+	}
+
+	.instagram-view {
+		.title {
+			line-height: 45px;
+		}
+		.icons-box {
+			i {
+				font-size: 21px;
+			}
+		}
+	}
+	.linkedin-view {
+		.icons-box {
+			i {
+				font-size: 16px;
+			}
+		}
+		.comments {
+			margin: 0;
+			padding: 0 10px;
+			font-size: 12px;
+			border-bottom: 1px solid #bdbdbd;
+			width: 100%;
+		}
+	}
+}
+
+.box-scroll {
+	width: 95%;
+	margin: 2.5%;
+	overflow-x: scroll;
+	.show-posts {
+		width: 100%;
+		display: flex;
+	}
+}
+
+.preview-post{
+	position: absolute;
+	background-color:#fff;
+	right:0
+}

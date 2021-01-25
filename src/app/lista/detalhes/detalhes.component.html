@@ -1,0 +1,46 @@
+<div class="preview-post" >
+    <div class="box show-lg mt-3 ml-3 mb-3  lg-h ">
+        <h2> Visualizar post</h2>
+        <div class="box-scroll">
+            <div class="box-scroll">
+                <div class="show-posts">
+                    <div class="instagram-view card">
+                        <div class="header-card">
+                            <i class="fab fa-instagram icon-title bg-instagram"></i>
+                            <h3 class="title">
+                                Anselmo Carlos</h3>
+                        </div>
+                        <img [src]="postDetail.media">
+
+                        <ul class="icons-box">
+                            <li> <i class="far fa-heart"></i></li>
+                            <li> <i class="far fa-comment"></i></li>
+                            <li class="float-right"><i class="far fa-bookmark"></i></li>
+                        </ul>
+                        <p>{{postDetail.text}}</p>
+                    </div>
+                    <div class="linkedin-view card" >
+                        <div class="header-card">
+                            <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
+                            <h3 class="title">
+                                Anselmo Carlos
+                                <br>
+                                <small>
+                                    <p>{{postDetail.publication_date | date }}</p>
+                                </small>
+                            </h3>
+                        </div>
+                        <p>{{postDetail.text}}</p>
+                        <img [src]="postDetail.media">
+                        <p class="comments small">5 comentários</p>
+                        <ul class="icons-box m-3">
+                            <li> <i class="far fa-thumbs-up"></i></li>
+                            <li> <i class="far fa-comment-alt"></i></li>
+                            <li> <i class="fas fa-share"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
-import { SocialNetwork } from './../models/social.model';
+import { DetalhesComponent } from './detalhes/detalhes.component';
 import { AgendamentoService } from '../shared/services/agendamento-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component,ComponentFactory, ComponentFactoryResolver, Input, OnInit, ViewContainerRef,  } from '@angular/core';
+import {  Posts } from '../models/post.model';
 
 @Component({
   selector: 'app-lista-agendamentos',
@@ -12,10 +13,15 @@ export class ListaAgendamentosComponent implements OnInit {
   SocialNetwork: any = [];
   status: any = [];
   booleanValue: any = false;
-  showIndex = false;
+  @Input() postData : Posts;
+
   constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    public viewContainerRef: ViewContainerRef,
     private agendamento: AgendamentoService
-  ) { }
+  ) {
+   
+   }
 
   ngOnInit() {
     this.getSchudules()
@@ -61,8 +67,12 @@ export class ListaAgendamentosComponent implements OnInit {
       this.booleanValue = !this.booleanValue
     }
   }
-  showDetails(){
-
+  detailItem (event) {
+    const elementContainerRef = this.viewContainerRef;
+     const detail  = elementContainerRef.createComponent(
+       this.componentFactoryResolver.resolveComponentFactory(DetalhesComponent) );
+         detail.instance.postDetail = event;   
+         console.log(event)
   }
 
 }
