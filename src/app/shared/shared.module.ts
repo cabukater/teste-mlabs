@@ -1,22 +1,24 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { DetalhesComponent } from './components/detalhes/detalhes.component';
 
 @NgModule({
   declarations: [
    HeaderComponent,
-    FooterComponent,
-    ModalComponent
+    ModalComponent,
+    DetalhesComponent
   ],exports:[
     HeaderComponent,
     ModalComponent,
-    FooterComponent
+    DetalhesComponent
   ],imports: [
     CommonModule
   ], entryComponents: [
-    ModalComponent
-  ]
+    ModalComponent,
+    DetalhesComponent
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
 })
 export class SharedModule { }

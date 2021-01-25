@@ -4,7 +4,7 @@
             <div class="box mt-3 mr-3 ">
                 <h2>Redes sociais</h2>
                 <ul class="flex-wrap social-network m-3">
-                    <li *ngFor="let social of socialNetworks, let i = index" formArrayName="social"
+                    <li *ngFor="let social of socialNetworks, let i = index" formArrayName="social_network_key"
                         [ngClass]="social.status ">
                         <input [ngClass]="'fab fa-'+social.icon" type="checkbox" [formControlName]="i"
                             [value]="social.id">
@@ -29,7 +29,7 @@
             <div class="box mt-3 mr-3   col-12">
                 <h2>Texto do Post</h2>
                 <div class="field-text flex-wrap m-3">
-                    <textarea placeholder="Aqui vai o texto descritivo do post" formControlName="mensagem"></textarea>
+                    <textarea placeholder="Aqui vai o texto descritivo do post" formControlName="text"></textarea>
                     <button class="emoji-btn" type="button" (click)="toggled = !toggled" [(emojiPickerIf)]="toggled"
                         [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
                         (emojiPickerSelect)="handleSelection($event)">
@@ -56,57 +56,20 @@
             <div class="box show-lg mt-3 ml-3 mb-3  lg-h ">
                 <h2> Visualizar post</h2>
                 <div class="not-image"
-                    [hidden]="form.get('social').value[1] === true || form.get('social').value[2] === true">
+                    [hidden]="form.get('social_network_key').value[1] === true || form.get('social_network_key').value[2] === true">
                     <p>
                         Aguardando conteúdo.Informe os canais e as mídias
                         selecionadas para visualização.
                     </p>
                     <img src="assets/img/post-preview.svg" class="show-lg">
                 </div>
-                <div class="box-scroll">
-                    <div class="box-scroll">
-                        <div class="show-posts">
-                            <div class="instagram-view card" *ngIf="form.get('social').value[2] === true">
-                                <div class="header-card">
-                                    <i class="fab fa-instagram icon-title bg-instagram"></i>
-                                    <h3 class="title">
-                                        Anselmo Carlos</h3>
-                                </div>
-                                <img [src]="imageSrc">
-
-                                <ul class="icons-box">
-                                    <li> <i class="far fa-heart"></i></li>
-                                    <li> <i class="far fa-comment"></i></li>
-                                    <li class="float-right"><i class="far fa-bookmark"></i></li>
-                                </ul>
-                                <p><span
-                                        *ngIf="form.get('mensagem').value === null || form.get('mensagem').value === ''">Aqui
-                                        vai o descritivo desse post</span> {{form.get('mensagem').value}}</p>
-                            </div>
-                            <div class="linkedin-view card" *ngIf="form.get('social').value[1] === true">
-                                <div class="header-card">
-                                    <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
-                                    <h3 class="title">
-                                        Anselmo Carlos
-                                        <br>
-                                        <small>
-                                            {{form.get('data').value | date }}
-                                        </small>
-                                    </h3>
-                                </div>
-                                <p><span *ngIf="form.get('mensagem').value === null">Aqui vai o descritivo desse
-                                        post</span> {{form.get('mensagem').value}}</p>
-                                <img [src]="imageSrc">
-                                <p class="comments small">5 comentários</p>
-                                <ul class="icons-box m-3">
-                                    <li> <i class="far fa-thumbs-up"></i></li>
-                                    <li> <i class="far fa-comment-alt"></i></li>
-                                    <li> <i class="fas fa-share"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <app-detalhes
+               [image]="imageSrc"
+                [postDetail]="form.value"
+                [showInstagram]="form.get('social_network_key').value[2] === true"
+                [showLinkedin]="form.get('social_network_key').value[1] === true"
+               ></app-detalhes>
+           
             </div>
         </div>
     </form>

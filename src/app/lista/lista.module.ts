@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DetalhesComponent } from './detalhes/detalhes.component';
 
 @NgModule({
-  declarations: [DetalhesComponent],
+  declarations: [],
   imports: [
     CommonModule,
   ],
   entryComponents:[
-    DetalhesComponent
+    
   ]
 })
 export class ListaModule { }

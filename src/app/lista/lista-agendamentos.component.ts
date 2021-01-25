@@ -1,4 +1,4 @@
-import { DetalhesComponent } from './detalhes/detalhes.component';
+import { DetalhesComponent } from '../shared/components/detalhes/detalhes.component';
 import { AgendamentoService } from '../shared/services/agendamento-service.service';
 import { Component,ComponentFactory, ComponentFactoryResolver, Input, OnInit, ViewContainerRef,  } from '@angular/core';
 import {  Posts } from '../models/post.model';
@@ -10,11 +10,11 @@ import {  Posts } from '../models/post.model';
 })
 export class ListaAgendamentosComponent implements OnInit {
   listSchedules: any = [];
-  SocialNetwork: any = [];
+  socialNetwork: any = [];
   status: any = [];
   booleanValue: any = false;
   @Input() postData : Posts;
-
+  showDetails: any
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     public viewContainerRef: ViewContainerRef,
@@ -51,8 +51,10 @@ export class ListaAgendamentosComponent implements OnInit {
   getSocialNetwork() {
     this.agendamento.getSocialNetworks().subscribe(
       status => {
-        console.log(status)
-        this.SocialNetwork = status
+      
+        this.socialNetwork = status
+
+        console.log(this.socialNetwork)
       }
     )
   }
@@ -67,14 +69,14 @@ export class ListaAgendamentosComponent implements OnInit {
       this.booleanValue = !this.booleanValue
     }
   }
-  detailItem (event) {
+  detailItem (event, i) {
     const elementContainerRef = this.viewContainerRef;
     elementContainerRef.clear();
 
      const detail  = elementContainerRef.createComponent(
        this.componentFactoryResolver.resolveComponentFactory(DetalhesComponent) );
          detail.instance.postDetail = event;   
-       
+        
   }
 
 }

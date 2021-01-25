@@ -21,7 +21,7 @@
                     <td class="col-small">
                         <ul class="flex-wrap">
                             <li *ngFor="let socialNet of schedule.social_network_key">
-                                <div *ngFor="let social of SocialNetwork" [ngClass]="'bg-' + social.name">
+                                <div *ngFor="let social of socialNetwork" [ngClass]="'bg-' + social.name">
                                     <i [ngClass]="'fab fa-' + social.icon" [hidden]="socialNet != social.id"></i>
                                 </div>
                             </li>
@@ -38,6 +38,8 @@
                     </td>
                     <td class="text-center">
                         <button (click)="detailItem(schedule)">Preview</button>
+                 
+
                     </td>
                     <td>
                         <span *ngFor="let status of status" [hidden]="schedule.status_key != status.id">
@@ -45,6 +47,7 @@
                             {{status.name}}
                         </span>
                     </td>
+                    
                 </tr>
             </tbody>
         </table>

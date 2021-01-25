@@ -48,9 +48,9 @@ export class AgendamentoComponent implements OnInit {
     this.form = this.fb.group({
       data: [null],
       hora: [null],
-      mensagem:[null],
+      text:[null],
       img:[null], 
-      social: new FormArray([])
+      social_network_key: new FormArray([])
       });
      
 }
@@ -61,7 +61,7 @@ export class AgendamentoComponent implements OnInit {
       this.socialNetworks =  data
       this.socialNetworks.forEach((o, i) => {
          const control = new FormControl(false);
-        (this.form.controls.social as FormArray).push(control);
+        (this.form.controls.social_network_key as FormArray).push(control);
         });
 
      }
@@ -69,32 +69,14 @@ export class AgendamentoComponent implements OnInit {
 
   }
 
-/*
-   getSocial(){
-   this.agendamento.getSocialNetworks().subscribe(
-     data => {
-      this.socialNetworks =  data
-      this.socialNetworks.forEach((o, i) => {
-        if(o.status === 'enabled'){
-          this.statusCheckbox = false  
-        } else{
-          this.statusCheckbox = true  
-
-        }   
-        const control = new FormControl({ value:false,  disabled: this.statusCheckbox});
-        (this.form.controls.social as FormArray).push(control);
-        });
-     }
-   )}*/
-
   handleSelection(event){
-    if(this.form.get('mensagem').value === null){
-      this.form.get('mensagem').setValue(  
+    if(this.form.get('text').value === null){
+      this.form.get('text').setValue(  
          event.char + '  '
        )
     }else{
-   this.form.get('mensagem').setValue(  
-      this.form.get('mensagem').value +' '+ event.char + ' '
+   this.form.get('text').setValue(  
+      this.form.get('text').value +' '+ event.char + ' '
      )
    }
   }

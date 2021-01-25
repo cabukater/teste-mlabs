@@ -5,14 +5,13 @@
         <div class="box-scroll">
             <div class="box-scroll">
                 <div class="show-posts">
-                    <div class="instagram-view card">
+                    <div class="instagram-view card"  *ngIf="showInstagram">
                         <div class="header-card">
                             <i class="fab fa-instagram icon-title bg-instagram"></i>
                             <h3 class="title">
                                 Anselmo Carlos</h3>
                         </div>
-                        <img [src]="postDetail.media">
-
+                        <img [src]="image">
                         <ul class="icons-box">
                             <li> <i class="far fa-heart"></i></li>
                             <li> <i class="far fa-comment"></i></li>
@@ -20,7 +19,7 @@
                         </ul>
                         <p>{{postDetail.text}}</p>
                     </div>
-                    <div class="linkedin-view card" >
+                    <div class="linkedin-view card" *ngIf="showLinkedin" >
                         <div class="header-card">
                             <i class="fab fa-linkedin-in icon-title bg-linkedin"></i>
                             <h3 class="title">
@@ -32,8 +31,8 @@
                             </h3>
                         </div>
                         <p>{{postDetail.text}}</p>
-                        <img [src]="postDetail.media">
-                        <p class="comments small">5 comentários</p>
+                        <img [src]="image">
+                          <p class="comments small">5 comentários</p>
                         <ul class="icons-box m-3">
                             <li> <i class="far fa-thumbs-up"></i></li>
                             <li> <i class="far fa-comment-alt"></i></li>
