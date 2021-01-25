@@ -1,4 +1,8 @@
+h2.title{
+	text-align: left;
+}
 .show-posts {
+
 	.card {
 		border: 1px solid #bdbdbd;
 		border-radius: 4px;
@@ -32,6 +36,7 @@
 				width: 80%;
 				float: right;
 				height: 100%;
+				text-align: left;
 				.instagram{
 			      height: 55px;
                   line-height: 66px;
@@ -153,10 +158,4 @@
     top: 0;
     height: 100%;
     overflow-y: scroll;
-}
-
-.title {
-	padding-left: 3%;
-	padding-bottom: 1%;
-	border-bottom: 1px solid #e0e0e0;
 }
