@@ -32,8 +32,17 @@ td, th {
 	text-align: center;
 	padding-left: 0 ;
 }
+
+.col-medium{
+	width: 200px;
+	text-align: left;
+
+}
 img{
-    width: 50px;
+	width: 50px;
+	height: 50px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 ul{
@@ -57,100 +66,9 @@ ul{
     float: left;
     margin: 5px 11px 10px 6px;
 }
-
-.show-posts {
-	.card {
-		border: 1px solid #bdbdbd;
-		border-radius: 4px;
-		width: 368px;
-		min-width: 368px;
-		margin: 1%;
-		overflow: hidden;
-		display: inline-grid;
-
-		.header-card {
-			width: 100%;
-			display: inline-flex;
-			.icon-title {
-				width: 45px;
-				height: 45px;
-				line-height: 45px;
-				text-align: center;
-				font-size: 30px;
-				border-radius: 100%;
-				color: #fff;
-				float: left;
-				margin-right: 10px;
-			}
-			.title {
-				font-size: 14px;
-				font-weight: 500;
-				height: 45px;
-				float: left;
-				margin: 0;
-			}
-		}
-		img {
-			margin: 0;
-			width: 368px;
-			height: 368px;
-		}
-		.icons-box {
-			padding: 0;
-			li {
-				display: inline;
-				border: none;
-				i {
-					color: #828282;
-					margin: 0px 10px;
-				}
-			}
-		}
-		p {
-			margin: 3%;
-			font-size: 14px;
-			text-align: left;
-		}
-	}
-
-	.instagram-view {
-		.title {
-			line-height: 45px;
-		}
-		.icons-box {
-			i {
-				font-size: 21px;
-			}
-		}
-	}
-	.linkedin-view {
-		.icons-box {
-			i {
-				font-size: 16px;
-			}
-		}
-		.comments {
-			margin: 0;
-			padding: 0 10px;
-			font-size: 12px;
-			border-bottom: 1px solid #bdbdbd;
-			width: 100%;
-		}
-	}
-}
-
-.box-scroll {
-	width: 95%;
-	margin: 2.5%;
-	overflow-x: scroll;
-	.show-posts {
-		width: 100%;
-		display: flex;
-	}
-}
-
-.preview-post{
+app-detalhes{
 	position: absolute;
-	background-color:#fff;
-	right:0
-}
+    right: 0;
+    margin-top: 29px;
+  
+  }

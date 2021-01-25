@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800&display=swap');
-*{
-    outline:none
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800&display=swap");
+* {
+    outline: none;
 }
 
-body{
-    font-family: 'Poppins', sans-serif;
-    background-color:#F8F8F8;
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f8f8f8;
     margin: 0;
     height: 100%;
     position: absolute;
     width: 100%;
 }
-ul{
-    list-style: none;  
+ul {
+    list-style: none;
     padding: 0;
 }
 
@@ -23,17 +23,15 @@ ul{
     font-weight: 500;
     height: 33px;
     color: 333333;
-    padding-left: 3%;
-    padding-bottom: 1%;
-    border-bottom: 1px solid #e0e0e0;
+ 
 }
 
-.container{
+.container {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
 }
-.flex-wrap{
+.flex-wrap {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -42,7 +40,7 @@ ul{
     align-items: flex-start;
 }
 
-.flex-container{
+.flex-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -51,7 +49,7 @@ ul{
     align-items: flex-start;
 }
 
-.flex-center{
+.flex-center {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -60,7 +58,7 @@ ul{
     align-items: center;
 }
 
-.flex-end{
+.flex-end {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -69,7 +67,7 @@ ul{
     align-items: center;
 }
 
-.flex-5{
+.flex-5 {
     flex: 5 5 auto;
     align-self: stretch;
 }
@@ -80,7 +78,7 @@ ul{
     border-radius: 4px;
     color: #2f80ed;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .solid-blue-btn {
@@ -89,155 +87,162 @@ ul{
     border-radius: 4px;
     color: #fff;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
-.solid-orange-btn{
+.solid-orange-btn {
     color: #fff;
-    background: #F2994A;
-    border: 1px solid #E0812C;
+    background: #f2994a;
+    border: 1px solid #e0812c;
     border-radius: 4px;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
-.transparent-btn{
+.transparent-btn {
     background-color: transparent;
     border: 1px solid transparent;
     border-radius: 4px;
     height: 35px;
     color: #2f80ed;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
-.md-btn{
+.md-btn {
     width: 30%;
     height: 27px;
     font-size: 12px;
     max-width: 180px;
     margin: 3%;
 }
-.lg-btn{
+.lg-btn {
     width: 100%;
     height: 35px;
     line-height: 35px;
     cursor: pointer;
     text-align: center;
     font-size: 16px;
-     margin: 0 auto;
-} 
-.show-lg{
+    margin: 0 auto;
+}
+.show-lg {
     display: none;
- }
- 
- .hidden-lg{
-     display: block;
- }
- .mrg-3{
-     margin:3.5%
- }
-
- .mrgL-3{
-    margin-left:3.5%
 }
 
-.mrgR-3{
-    margin-right:3.5%
+.hidden-lg {
+    display: block;
+}
+.mrg-3 {
+    margin: 3.5%;
 }
 
-.mrgT-3{
-    margin-top:3.5%
+.mrgL-3 {
+    margin-left: 3.5%;
 }
 
-.mrgB-3{
-    margin-bottom:1.5%
+.mrgR-3 {
+    margin-right: 3.5%;
 }
-.p-5{
+
+.mrgT-3 {
+    margin-top: 3.5%;
+}
+
+.mrgB-3 {
+    margin-bottom: 1.5%;
+}
+.p-5 {
     padding: 5%;
-} 
- .colun-12{
-     width: 100%;
- }
-.float-right{
+}
+.colun-12 {
+    width: 100%;
+}
+.float-right {
     float: right;
 }
 
-.small, small{
+.small,
+small {
     font-size: 12px;
     color: #828282;
     font-weight: 400;
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
 .bg-Instagram,
-.bg-instagram{
-    background: linear-gradient(187.5deg, #ef2ea2 5.81%,
-     #e0a22b 109.34%);
-     color: #fff;
-     border-radius: 200%;
-
+.bg-instagram {
+    background: linear-gradient(187.5deg, #ef2ea2 5.81%, #e0a22b 109.34%);
+    color: #fff;
+    border-radius: 200%;
 }
 .bg-Linkedin,
-.bg-linkedin{
+.bg-linkedin {
     background-color: #2e92ef;
-   color: #fff;
-   border-radius: 200%;
+    color: #fff;
+    border-radius: 200%;
 }
 
-.disabled{
+.disabled {
     pointer-events: none;
 }
 
- @media screen and (min-width: 768px) {
-    .show-lg{
-        display: block;
+.hidden-mob{
+    display: none;
+}
 
-     }
-     .hidden-lg{
-         display: none;
-     } 
-     .lg-btn{
+@media screen and (min-width: 768px) {
+    .show-lg {
+        display: block;
+    }
+    .hidden-lg {
+        display: none;
+    }
+    .lg-btn {
         max-width: 180px;
-     }
-     .lg-6{
+    }
+    .lg-6 {
         flex: 5 5 auto;
         align-self: stretch;
         width: 50%;
-        padding:0
-     
-     }
-     .lg-4{
+        padding: 0;
+    }
+    .lg-4 {
         flex: 5 5 auto;
         align-self: stretch;
         width: 25%;
-        padding:0
-     
-     }
-     .md-btn{
-       height: 45px;
-       margin: 1%;
-       font-size: 16px;
-     }
-     .mrg-3{
-        margin:3%
+        padding: 0;
     }
-   
-    .mrgL-3{
-       margin-left:3%
-   }
-   
-   .mrgR-3{
-       margin-right:3%
-   }
-   
-   .mrgT-3{
-       margin-top:3%
-   }
-   
-   .mrgb-3{
-       margin-bottom:3%
-   }
- }
+    .md-btn {
+        height: 45px;
+        margin: 1%;
+        font-size: 16px;
+    }
+    .mrg-3 {
+        margin: 3%;
+    }
+
+    .mrgL-3 {
+        margin-left: 3%;
+    }
+
+    .mrgRlg-3 {
+        margin-right: 3%;
+    }
+
+    .mrgT-3 {
+        margin-top: 3%;
+    }
+
+    .mrgb-3 {
+        margin-bottom: 3%;
+    }
+    .mrgRlg-3 {
+        margin-right: 3.5%;
+    }
+
+    .hidden-mob{
+        display: inline-block;
+    }
+}

@@ -1,5 +1,5 @@
 <div class="preview-post" [ngClass]="isModal">
-    <button *ngIf="modalClose" (click)="close()">
+    <button *ngIf="modalClose" (click)="close()" class="button-modal">
         <i class="fas fa-times"></i>
     </button>
     <div class="box">
@@ -16,7 +16,7 @@
                             </div>
                          </div>
                         <img [src]="image">
-                        <ul class="icons-box">
+                        <ul class="icons-box mrgT-3">
                             <li> <i class="far fa-heart"></i></li>
                             <li> <i class="far fa-comment"></i></li>
                             <li class="float-right"><i class="far fa-bookmark"></i></li>

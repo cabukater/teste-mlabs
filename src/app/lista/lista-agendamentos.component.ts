@@ -14,7 +14,8 @@ export class ListaAgendamentosComponent implements OnInit {
   status: any = [];
   booleanValue: any = false;
   @Input() postData : Posts;
-  showDetails: any
+  showDetails: any;
+  detailItemView
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     public viewContainerRef: ViewContainerRef,
@@ -69,14 +70,10 @@ export class ListaAgendamentosComponent implements OnInit {
       this.booleanValue = !this.booleanValue
     }
   }
-  detailItem (event, i) {
-    const elementContainerRef = this.viewContainerRef;
-    elementContainerRef.clear();
+  detailItem (event) {
+   console.log(event)
 
-     const detail  = elementContainerRef.createComponent(
-       this.componentFactoryResolver.resolveComponentFactory(DetalhesComponent) );
-         detail.instance.postDetail = event;   
-        
   }
 
 }
+

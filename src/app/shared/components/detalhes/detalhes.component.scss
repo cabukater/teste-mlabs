@@ -120,24 +120,31 @@
 .isModal{
 	position: absolute;
     width: 100%;
-    top: 0;
+    top: 80px;
     left: 0;
     background-color: #ffff;
     z-index: 999;
 	height: 100%;
+	.button-modal{
+		border:none;
+		float: right;
+		margin-top: 5px;
+		background-color: #fff;
+		margin-right: 5%;
+	}
 	.box-scroll{
 		overflow-x: hidden;
 		overflow-y: scroll;
 		display: block;
 		.show-posts{
-          display: block
+		  display: block;
+		 .card{
+			 margin: 3%;
+		 }
 		}
-		.button-close{
-			border:none;
-			float: right;
-			margin-top: 5px;
-		}
+	
 	}
+
 }
 
 .modal{
@@ -146,4 +153,10 @@
     top: 0;
     height: 100%;
     overflow-y: scroll;
+}
+
+.title {
+	padding-left: 3%;
+	padding-bottom: 1%;
+	border-bottom: 1px solid #e0e0e0;
 }

@@ -1,4 +1,5 @@
 .container {
+
     .box {
         background-color: #fff;
         border-radius: 4px;
@@ -148,6 +149,13 @@
     bottom: 0;
 }
 
+.title {
+    color: 333333;
+    padding-left: 3%;
+    padding-bottom: 1%;
+    border-bottom: 1px solid #e0e0e0;
+}
+
 @media screen and (min-width: 768px) {
     .field-text {
         height: 214px !important;
@@ -261,6 +269,15 @@
             width: 100%;
             display: flex;
         }
+        .button-modal{
+            float: right;
+            border: none;
+            background-color: #fff;
+        
+        }
+    }
+    .container[_ngcontent-qag-c2] .input-group[_ngcontent-qag-c2] input[_ngcontent-qag-c2]{
+      background-color: #fff !important;
     }
 }
 
@@ -268,10 +285,6 @@ input[type="file"] {
     display: none;
 }
 
-.modal{
-    width: 100%;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    overflow-y: scroll;
+.input-field{
+    background-color: #fff;
 }

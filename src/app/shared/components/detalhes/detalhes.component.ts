@@ -19,7 +19,9 @@ export class DetalhesComponent implements OnInit {
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     public viewContainerRef: ViewContainerRef,
-  ) { }
+  ) {
+    console.log(this.showLinkedin)
+   }
 
   ngOnInit() {
     console.log(this.showInstagram)

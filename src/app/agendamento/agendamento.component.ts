@@ -113,17 +113,17 @@ export class AgendamentoComponent implements OnInit {
 
   }
   
-  openModal(){
+  openModal(data){
     const elementContainerRef = this.viewContainerRef;
     elementContainerRef.clear();
 
      const detail  = elementContainerRef.createComponent(
        this.componentFactoryResolver.resolveComponentFactory(DetalhesComponent) );
-         detail.instance.postDetail = this.form.value;  
+         detail.instance.postDetail = data;  
          detail.instance.image = this.imageSrc;
-         detail.instance.dataPost = this.form.get('data').value;
-         detail.instance.showLinkedin = true;
-         detail.instance.showInstagram =  true,
+         detail.instance.dataPost = data.data;
+         detail.instance.showLinkedin = data.social_network_key[1] === true;
+         detail.instance.showInstagram =  data.social_network_key[2] === true;
          detail.instance.modalClose = true;
          detail.instance.isModal = 'isModal'
   }

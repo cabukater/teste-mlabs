@@ -2,6 +2,7 @@ header {
     width: 100%;
     height: 80px;
     background: #fff;
+    border-bottom: 1px solid #E0E0E0;
     .container{
         height: 80px;
     }
@@ -31,6 +32,10 @@ header {
     }
 }
 
+.hidden-mob{
+    display: none;
+}
+
 @media screen and (min-width: 768px) {
     header {
         .logo-button {
@@ -46,6 +51,9 @@ header {
                 font-weight: 500;
                 font-size: 14px;
             }
+        }
+        .hidden-mob{
+            display: block
         }
     }
 }

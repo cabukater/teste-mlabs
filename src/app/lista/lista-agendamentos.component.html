@@ -1,5 +1,5 @@
-<div class="container mrg-3">
-    <h2 class="title">
+<div class="container flex-container mrgT-3">
+    <h2 class="title mrgT-3">
         Lista de agendamento
     </h2>
     <div class="table-box">
@@ -8,9 +8,9 @@
                 <tr>
                     <th class="col-small"> Redes Sociais</th>
                     <th class="col-small"> Mídia</th>
-                    <th> Texto </th>
-                    <th> Data
-                        <button (click)="sort('publication_date', booleanValue)">Arrow</button>
+                    <th class="col-big"> Texto </th>
+                    <th  class="col-medium"  (click)="sort('publication_date', booleanValue)"> Data
+                        <i class="fas fa-arrow-down"></i>
                     </th>
                     <th class="col-small"> Ações </th>
                     <th> Status </th>
@@ -30,21 +30,23 @@
                     <td class="col-small pl-0">
                         <img [src]="schedule.media">
                     </td>
-                    <td>
+                    <td >
                         <p> {{schedule.text}}</p>
                     </td>
                     <td>
-                        <p>{{schedule.publication_date | date }}</p>
+                        <p>{{schedule.publication_date | date : 'dd/MM/yyyy hh:mm'}}</p>
                     </td>
-                    <td class="text-center">
-                        <button (click)="detailItem(schedule)">Preview</button>
+                    <td class="text-center pl-0">
+                        <button (click)="detailItemView = li">Preview</button>
                            <app-detalhes
+                             *ngIf="detailItemView === li "
                              [image]="schedule.media"
                              [postDetail]="schedule"
                              [data]="schedule.publication_date"
                              [showInstagram]="true"
                              [showLinkedin]="true"
-                            ></app-detalhes>                    </td>
+                            ></app-detalhes>                   
+                        </td>
                     <td>
                         <span *ngFor="let status of status" [hidden]="schedule.status_key != status.id">
                             <i class="status" [style.background-color]="status.color"> </i>
