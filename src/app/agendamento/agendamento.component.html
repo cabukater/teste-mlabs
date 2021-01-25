@@ -1,5 +1,4 @@
 <div class="container">
-
     <form class="flex-container" [formGroup]="form">
         <div class="lg-6 colun-12 flex-wrap">
             <div class="box mrgT-3 mrgRlg-3  mrgB-3 colun-12 lg-4">
@@ -7,9 +6,8 @@
                 <ul class="flex-wrap social-network mrg-3">
                     <li *ngFor="let social of socialNetworks, let i = index" formArrayName="social_network_key"
                         [ngClass]="social.status">
-                        <input [ngClass]="'fab fa-'+social.icon" type="checkbox" [formControlName]="i"
+                        <input [ngClass]="'fab fa-'+social.icon" type="checkbox" required [formControlName]="i"
                             [value]="social.id">
-                    </li>
                 </ul>
             </div>
             <div class="box mrgT-3 mrgRlg-3 colun-12 lg-4 mrgB-3">
@@ -17,9 +15,12 @@
                 <div class="flex-wrap mrg-3">
                     <div class="input-group">
                         <i class="fas fa-calendar-alt" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen"></i>
-                        <input type="text" #dp="bsDatepicker"
+                        <input type="text" #dp="bsDatepicker" required
                             [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' , containerClass: 'theme-default'}" bsDatepicker
                             class="input-field" formControlName="data">
+                        <span *ngIf="ifError && form.controls.data.invalid" class="alert-danger">
+                            Informe uma data
+                        </span>
                     </div>
                     <div class="input-group">
                         <span class="open-button"> <i class="fas fa-clock"></i></span>
@@ -30,12 +31,17 @@
             <div class="box mrgT-3 mrgRlg-3   colun-12">
                 <h2 class="title">Texto do Post</h2>
                 <div class="field-text flex-wrap mrg-3">
-                    <textarea placeholder="Aqui vai o texto descritivo do post" formControlName="text"></textarea>
+                    <textarea placeholder="Aqui vai o texto descritivo do post" required
+                        formControlName="text"></textarea>
                     <button class="emoji-btn" type="button" (click)="toggled = !toggled" [(emojiPickerIf)]="toggled"
                         [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
                         (emojiPickerSelect)="handleSelection($event)">
                         <i class="far fa-grin-alt"></i>
                     </button>
+
+                    <span *ngIf="ifError && form.controls.text.invalid" class="alert-danger mrgT-3">
+                        Escreva seu texto
+                    </span>
                 </div>
             </div>
             <div class="box mrgT-3 mrgRlg-3 mrgb-3  colun-12">
@@ -45,37 +51,32 @@
                         <i class="fas fa-cloud-upload-alt"></i>
                         <p>Arraste e solte aqui ou clique no botão abaixo.</p>
                     </div>
-
-                    <label  for="file-upload"  (change)="onFileChange($event)" class="outline-blue-btn lg-btn">Pesquisar Imagens
-
+                    <label for="file-upload" (change)="onFileChange($event)" class="outline-blue-btn lg-btn">Pesquisar
+                        Imagens
                     </label>
-                    <input type="file"  id="file-upload" formControlName="img" accept="image/png, image/jpeg"
-                        (change)="onFileChange($event)" >
+                    <input type="file" id="file-upload" formControlName="img" accept="image/png, image/jpeg"
+                        (change)="onFileChange($event)">
                 </div>
             </div>
-            <button type="button" (click)="openModal(form.value)"class="hidden-lg solid-orange-btn lg-btn mrg-3">
+            <button type="button" (click)="openModal(form.value)" class="hidden-lg solid-orange-btn lg-btn mrg-3">
                 Visualizar post
             </button>
         </div>
         <div class="lg-6 colun-12">
             <div class="box show-lg mrgT-3  mrgL-3 mrgb-3  lg-h ">
-              <app-detalhes
-               [hidden]="!form.get('social_network_key')"
-               [image]="imageSrc"
-               [dataPost]="form.get('data').value"
-                [postDetail]="form.value"
-                [showInstagram]="form.get('social_network_key').value[2] === true"
-                [showLinkedin]="form.get('social_network_key').value[1] === true"
-               ></app-detalhes>
-               <div class="not-image"
-               [hidden]="form.get('social_network_key').value[1] === true || form.get('social_network_key').value[2] === true">
-               <p>
-                   Aguardando conteúdo.Informe os canais e as mídias
-                   selecionadas para visualização.
-               </p>
-               <img src="assets/img/post-preview.svg" class="show-lg">
-           </div>
-           
+                <app-detalhes [hidden]="!form.get('social_network_key')" [image]="imageSrc"
+                    [dataPost]="form.get('data').value" [postDetail]="form.value"
+                    [showInstagram]="form.get('social_network_key').value[2] === true"
+                    [showLinkedin]="form.get('social_network_key').value[1] === true"></app-detalhes>
+                <div class="not-image"
+                    [hidden]="form.get('social_network_key').value[1] === true || form.get('social_network_key').value[2] === true">
+                    <p>
+                        Aguardando conteúdo.Informe os canais e as mídias
+                        selecionadas para visualização.
+                    </p>
+                    <img src="assets/img/post-preview.svg" class="show-lg">
+                </div>
+
             </div>
         </div>
     </form>
@@ -84,8 +85,8 @@
 <div class="footer">
     <div class="container flex-end">
         <button class="md-btn transparent-btn" type="button">Cancelar</button>
-        <button class="md-btn outline-blue-btn" type="button" (click)="save()" ><span class="hidden-mob">
-            Salvar</span> Rascunho</button>
-        <button class="md-btn solid-blue-btn" type="button">Agendar</button>
+        <button class="md-btn outline-blue-btn" type="button" (click)="save()"><span class="hidden-mob">
+                Salvar</span> Rascunho</button>
+        <button class="md-btn solid-blue-btn" type="button" [attr.disabled]="form.invalid">Agendar</button>
     </div>
 </div>

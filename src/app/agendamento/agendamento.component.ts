@@ -31,7 +31,7 @@ export class AgendamentoComponent implements OnInit {
   imageSrc: string;
   statusCheckbox: boolean;
   bsModalRef: BsModalRef;
-
+  ifError = false;
   constructor(
     private sanitizer: DomSanitizer,
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -49,9 +49,9 @@ export class AgendamentoComponent implements OnInit {
     this.imageSrc = 'assets/img/img1.svg';
    this.getSocial();
     this.form = this.fb.group({
-      data: [null],
+      data: [null, {required: true}],
       hora: [null],
-      text:['Aqui vai o texto descritivo do post'],
+      text:[null, {required: true}],
       img:[null], 
       social_network_key: new FormArray([])
       });
@@ -105,10 +105,18 @@ export class AgendamentoComponent implements OnInit {
   }
 
   save(){
-    this.bsModalRef = this.modalService.show(ModalComponent, 
-      {
-        class: 'modal-dialog-centered' 
-      })
+    if(this.form.valid){
+        this.ifError = false,
+        this.bsModalRef = this.modalService.show(ModalComponent, 
+          {
+            class: 'modal-dialog-centered' 
+          })
+    }  else{
+
+      this.ifError = true
+      
+  }
+    
     console.log(this.form.value)
 
   }

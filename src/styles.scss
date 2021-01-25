@@ -23,9 +23,7 @@ ul {
     font-weight: 500;
     height: 33px;
     color: 333333;
-    padding-left: 3%;
-    padding-bottom: 1%;
-    border-bottom: 1px solid #e0e0e0;
+
 }
 
 .container {
@@ -247,4 +245,15 @@ small {
     .hidden-mob{
         display:none;
     }
+}
+
+.theme-default .bs-datepicker-head{
+    background-color: #fff;
+      button{
+       color: #172b4d;
+    }
+}
+
+.bs-datepicker-body table th{
+    color: #172b4d;
 }
