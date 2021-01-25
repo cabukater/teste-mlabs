@@ -38,7 +38,12 @@
                     </td>
                     <td class="text-center">
                         <button (click)="detailItem(schedule)">Preview</button>
-                 
+                           <app-detalhes
+                             [image]="schedule.media"
+                             [postDetail]="schedule"
+                             [showInstagram]="true"
+                             [showLinkedin]="true"
+                            ></app-detalhes>
 
                     </td>
                     <td>

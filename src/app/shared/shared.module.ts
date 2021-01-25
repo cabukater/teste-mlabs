@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { DetalhesComponent } from './components/detalhes/detalhes.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { DetalhesComponent } from './components/detalhes/detalhes.component';
   ],exports:[
     HeaderComponent,
     ModalComponent,
+    RouterModule,
     DetalhesComponent
   ],imports: [
     CommonModule

@@ -2,21 +2,30 @@ header {
     width: 100%;
     height: 80px;
     background: #fff;
+    .container{
+        height: 80px;
+    }
     .logo-button {
         font-weight: normal;
         font-size: 22px;
         line-height: 80px;
+        border:none;
+        cursor: pointer;
     }
     .box-user {
         width: 50%;
         text-align: end;
+        height: 80px;
+        line-height: 80px;
         img {
             width: 45px;
             position: relative;
-            top: 18px;
+            top: 0px;
         }
         p {
             display: none;
+            height: 80px;   
+            line-height: 80px;
       
         }
     }
