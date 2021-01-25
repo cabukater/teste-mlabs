@@ -1,23 +1,23 @@
-<div class="container  m-3">
+<div class="container">
     <form class="flex-container" [formGroup]="form">
-        <div class="lg-6 col-12 flex-wrap">
-            <div class="box mt-3 mr-3 ">
-                <h2>Redes sociais</h2>
-                <ul class="flex-wrap social-network m-3">
+        <div class="lg-6 colun-12 flex-wrap">
+            <div class="box mrgT-3 mrgR-3  mrgB-3 colun-12 lg-4">
+                <h2 class="title">Redes sociais</h2>
+                <ul class="flex-wrap social-network mrg-3">
                     <li *ngFor="let social of socialNetworks, let i = index" formArrayName="social_network_key"
-                        [ngClass]="social.status ">
+                        [ngClass]="social.status">
                         <input [ngClass]="'fab fa-'+social.icon" type="checkbox" [formControlName]="i"
                             [value]="social.id">
                     </li>
                 </ul>
             </div>
-            <div class="box mt-3 mr-3 ml-3 col-12 lg-6">
-                <h2>Data publicação</h2>
-                <div class="flex-wrap m-3">
+            <div class="box mrgT-3 mrgR-3 colun-12 lg-4 mrgB-3">
+                <h2 class="title">Data publicação</h2>
+                <div class="flex-wrap mrg-3">
                     <div class="input-group">
                         <i class="fas fa-calendar-alt" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen"></i>
                         <input type="text" #dp="bsDatepicker"
-                            [bsConfig]="{ dateInputFormat: 'DD/MM' , containerClass: 'theme-default'}" bsDatepicker
+                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' , containerClass: 'theme-default'}" bsDatepicker
                             class="btnCal-click" formControlName="data">
                     </div>
                     <div class="input-group">
@@ -26,9 +26,9 @@
                     </div>
                 </div>
             </div>
-            <div class="box mt-3 mr-3   col-12">
-                <h2>Texto do Post</h2>
-                <div class="field-text flex-wrap m-3">
+            <div class="box mrgT-3 mrgR-3   colun-12">
+                <h2 class="title">Texto do Post</h2>
+                <div class="field-text flex-wrap mrg-3">
                     <textarea placeholder="Aqui vai o texto descritivo do post" formControlName="text"></textarea>
                     <button class="emoji-btn" type="button" (click)="toggled = !toggled" [(emojiPickerIf)]="toggled"
                         [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
@@ -37,38 +37,43 @@
                     </button>
                 </div>
             </div>
-            <div class="box mt-3 mr-3 mb-3  col-12">
-                <h2>Upload de Imagem</h2>
-                <div class="box-upload flex-wrap m-3">
-                    <div class="text-center up-box show-lg col-12">
+            <div class="box mrgT-3 mrgR-3 mrgb-3  colun-12">
+                <h2 class="title">Upload de Imagem</h2>
+                <div class="box-upload flex-wrap mrg-3">
+                    <div class="text-center up-box show-lg colun-12">
                         <i class="fas fa-cloud-upload-alt"></i>
                         <p>Arraste e solte aqui ou clique no botão abaixo.</p>
                     </div>
-                    <input type="file" formControlName="img" accept="image/png, image/jpeg"
-                        (change)="onFileChange($event)" class="outline-blue-btn lg-btn">Pesquisar Imagem
+
+                    <label  for="file-upload"  (change)="onFileChange($event)" class="outline-blue-btn lg-btn">Pesquisar Imagens
+
+                    </label>
+                    <input type="file"  id="file-upload" formControlName="img" accept="image/png, image/jpeg"
+                        (change)="onFileChange($event)" >
                 </div>
             </div>
             <button type="button" class="hidden-lg solid-orange-btn lg-btn m5">
                 Visualizar post
             </button>
         </div>
-        <div class="lg-6 col-12">
-            <div class="box show-lg mt-3 ml-3 mb-3  lg-h ">
-                <h2> Visualizar post</h2>
-                <div class="not-image"
-                    [hidden]="form.get('social_network_key').value[1] === true || form.get('social_network_key').value[2] === true">
-                    <p>
-                        Aguardando conteúdo.Informe os canais e as mídias
-                        selecionadas para visualização.
-                    </p>
-                    <img src="assets/img/post-preview.svg" class="show-lg">
-                </div>
+        <div class="lg-6 colun-12">
+            <div class="box show-lg mrgT-3  mrgL-3 mrgb-3  lg-h ">
+  
                <app-detalhes
+               [hidden]="!form.get('social_network_key')"
                [image]="imageSrc"
                 [postDetail]="form.value"
                 [showInstagram]="form.get('social_network_key').value[2] === true"
                 [showLinkedin]="form.get('social_network_key').value[1] === true"
                ></app-detalhes>
+               <div class="not-image"
+               [hidden]="form.get('social_network_key').value[1] === true || form.get('social_network_key').value[2] === true">
+               <p>
+                   Aguardando conteúdo.Informe os canais e as mídias
+                   selecionadas para visualização.
+               </p>
+               <img src="assets/img/post-preview.svg" class="show-lg">
+           </div>
            
             </div>
         </div>

@@ -5,16 +5,7 @@
         order: 0;
         flex: 5 5 auto;
         border: 1px solid #e0e0e0;
-        h2 {
-            line-height: 33px;
-            font-size: 16px;
-            font-weight: 500;
-            height: 33px;
-            color: 333333;
-            padding-left: 3%;
-            padding-bottom: 1%;
-            border-bottom: 1px solid #e0e0e0;
-        }
+
         ul.social-network {
              li {
                 width: 33px;
@@ -76,7 +67,7 @@
     .input-group {
         width: 45%;
         float: left;
-        height: 32px;
+
         i {
             position: absolute;
             top: 11px;
@@ -270,4 +261,8 @@
             display: flex;
         }
     }
+}
+
+input[type="file"] {
+    display: none;
 }
