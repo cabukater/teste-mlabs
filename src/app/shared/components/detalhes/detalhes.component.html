@@ -1,5 +1,5 @@
 <div class="preview-post" [ngClass]="isModal">
-    <button *ngIf="modalClose">
+    <button *ngIf="modalClose" (click)="close()">
         <i class="fas fa-times"></i>
     </button>
     <div class="box">

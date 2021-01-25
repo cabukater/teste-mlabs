@@ -1,5 +1,5 @@
 import { SocialNetwork } from './../../../models/social.model';
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ElementRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-detalhes',
@@ -14,6 +14,8 @@ export class DetalhesComponent implements OnInit {
   @Input() dataPost;
   @Input() modalClose;
   @Input() isModal;
+  @ViewChild('modal', {static: false})  modal: ElementRef ;
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     public viewContainerRef: ViewContainerRef,
@@ -38,8 +40,11 @@ export class DetalhesComponent implements OnInit {
 
   }
   close(){
-    const elementContainerRef = this.viewContainerRef;
-    elementContainerRef.clear();
+    this.viewContainerRef
+    .element
+    .nativeElement
+    .parentElement
+    .removeChild(this.viewContainerRef.element.nativeElement);
 
   }
 }

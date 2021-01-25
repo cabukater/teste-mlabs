@@ -115,6 +115,8 @@ export class AgendamentoComponent implements OnInit {
   
   openModal(){
     const elementContainerRef = this.viewContainerRef;
+    elementContainerRef.clear();
+
      const detail  = elementContainerRef.createComponent(
        this.componentFactoryResolver.resolveComponentFactory(DetalhesComponent) );
          detail.instance.postDetail = this.form.value;  
