@@ -1,8 +1,10 @@
-<div class="preview-post">
-    <div class="box show-lg">
+<div class="preview-post" [ngClass]="isModal">
+    <button *ngIf="modalClose">
+        <i class="fas fa-times"></i>
+    </button>
+    <div class="box">
         <h2 class="title"> Visualizar post</h2>
         <div class="box-scroll">
-            <div class="box-scroll">
                 <div class="show-posts">
                     <div class="instagram-view card" *ngIf="showInstagram">
                         <div class="header-card flex-container">
@@ -44,5 +46,3 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>

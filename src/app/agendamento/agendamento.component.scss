@@ -267,3 +267,11 @@
 input[type="file"] {
     display: none;
 }
+
+.modal{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    overflow-y: scroll;
+}

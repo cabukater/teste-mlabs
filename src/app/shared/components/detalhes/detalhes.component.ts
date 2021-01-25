@@ -1,5 +1,5 @@
 import { SocialNetwork } from './../../../models/social.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-detalhes',
@@ -10,16 +10,21 @@ export class DetalhesComponent implements OnInit {
   @Input() postDetail: any;
   @Input() showInstagram : boolean;
   @Input() showLinkedin : boolean;
-  @Input() image: boolean;
+  @Input() image: string;
   @Input() dataPost;
-  constructor() { }
+  @Input() modalClose;
+  @Input() isModal;
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    public viewContainerRef: ViewContainerRef,
+  ) { }
 
   ngOnInit() {
-    
-    if(this.postDetail.text === null || this.postDetail.text === ''){
+    console.log(this.showInstagram)
+    if(this.postDetail.text === null){
       console.log('veio vazio')
     }
-    console.log(this.postDetail.social_network_key)
+
     let index = this.postDetail.social_network_key.filter(social_network_key => {
       if(social_network_key === 2){
         this.showLinkedin = true
@@ -32,5 +37,9 @@ export class DetalhesComponent implements OnInit {
     });
 
   }
+  close(){
+    const elementContainerRef = this.viewContainerRef;
+    elementContainerRef.clear();
 
+  }
 }

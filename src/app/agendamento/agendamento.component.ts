@@ -1,7 +1,7 @@
 import { ModalComponent } from '../shared/components/modal/modal.component';
 import { SocialNetwork } from './../models/social.model';
 import { AgendamentoService } from '../shared/services/agendamento-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
@@ -10,6 +10,7 @@ import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { DomSanitizer } from '@angular/platform-browser';
 defineLocale('pt-br', ptBrLocale);
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { DetalhesComponent } from '../shared/components/detalhes/detalhes.component';
 
 @Component({
   selector: 'app-agendamento',
@@ -33,6 +34,8 @@ export class AgendamentoComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    public viewContainerRef: ViewContainerRef,
     private localeService: BsLocaleService,
     private agendamento :AgendamentoService,
     private fb: FormBuilder,
@@ -109,5 +112,17 @@ export class AgendamentoComponent implements OnInit {
     console.log(this.form.value)
 
   }
-   
+  
+  openModal(){
+    const elementContainerRef = this.viewContainerRef;
+     const detail  = elementContainerRef.createComponent(
+       this.componentFactoryResolver.resolveComponentFactory(DetalhesComponent) );
+         detail.instance.postDetail = this.form.value;  
+         detail.instance.image = this.imageSrc;
+         detail.instance.dataPost = this.form.get('data').value;
+         detail.instance.showLinkedin = true;
+         detail.instance.showInstagram =  true,
+         detail.instance.modalClose = true;
+         detail.instance.isModal = 'isModal'
+  }
 }
