@@ -11,20 +11,20 @@ export class AgendamentoService {
    }
 
    getSocialNetworks(){
-      return this.http.get(' http://localhost:3800/data').pipe()
+      return this.http.get('https://gentle-savannah-59272.herokuapp.com/social-network/data').pipe()
    }
 
    getSchedules(){
-    return this.http.get(' http://localhost:3000/data').pipe()
+    return this.http.get('https://gentle-savannah-59272.herokuapp.com/schedules/data').pipe()
 
    }
 
   post(data){
-    return this.http.post(' http://localhost:3004/data', data).pipe()
+    return this.http.post('https://gentle-savannah-59272.herokuapp.com/schedules-status/data', data).pipe()
 
    }
    getStatus(){
-    return this.http.get(' http://localhost:3004/data').pipe()
+    return this.http.get('https://gentle-savannah-59272.herokuapp.com/schedules').pipe()
 
    }
 }
