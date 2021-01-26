@@ -87,6 +87,6 @@
         <button class="md-btn transparent-btn" type="button">Cancelar</button>
         <button class="md-btn outline-blue-btn" type="button" (click)="save()"><span class="hidden-mob">
                 Salvar</span> Rascunho</button>
-        <button class="md-btn solid-blue-btn" type="button" [attr.disabled]="form.invalid">Agendar</button>
+        <button class="md-btn solid-blue-btn" type="button" (click)="saveData()">Agendar</button>
     </div>
 </div>

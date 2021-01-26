@@ -1,24 +1,114 @@
 {
-    "data": [
-      {
-        "id": 1,
-        "name": "Agendado",
-        "color": "#2F80ED"
-      },
-      {
-        "id": 2,
-        "name": "Postado",
-        "color": "#27AE60"
-      },
-      {
-        "id": 3,
-        "name": "Não aprovado",
-        "color": "#F2C94C"
-      },
-      {
-        "id": 4,
-        "name": "Postado com ressalvas",
-        "color": "#EB5757"
-      }
-    ]
-  }
+  "data": [
+    {
+      "id": 1,
+      "name": "Agendado",
+      "color": "#2F80ED"
+    },
+    {
+      "id": 2,
+      "name": "Postado",
+      "color": "#27AE60"
+    },
+    {
+      "id": 3,
+      "name": "Não aprovado",
+      "color": "#F2C94C"
+    },
+    {
+      "id": 4,
+      "name": "Postado com ressalvas",
+      "color": "#EB5757"
+    },
+    {
+      "image": "assets/img/img1.svg",
+      "dataPost": null,
+      "text": null,
+      "img": null,
+      "social_network_key": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 5
+    },
+    {
+      "image": "assets/img/img1.svg",
+      "dataPost": null,
+      "text": null,
+      "img": null,
+      "social_network_key": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 6
+    },
+    {
+      "image": "assets/img/img1.svg",
+      "dataPost": null,
+      "text": null,
+      "img": null,
+      "social_network_key": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 7
+    },
+    {
+      "image": "assets/img/img1.svg",
+      "dataPost": null,
+      "text": null,
+      "img": null,
+      "social_network_key": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 8
+    },
+    {
+      "image": "assets/img/img1.svg",
+      "dataPost": "2021-01-07T01:25:02.000Z",
+      "text": "trtrtrt",
+      "img": null,
+      "social_network_key": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 9
+    },
+    {
+      "image": "assets/img/img1.svg",
+      "dataPost": "2021-01-07T01:25:02.000Z",
+      "text": "trtrtrt",
+      "img": null,
+      "social_network_key": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "id": 10
+    }
+  ]
+}

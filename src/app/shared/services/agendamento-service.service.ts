@@ -18,8 +18,13 @@ export class AgendamentoService {
     return this.http.get(' http://localhost:3000/data').pipe()
 
    }
+
+  post(data){
+    return this.http.post(' http://localhost:3004/data', data).pipe()
+
+   }
    getStatus(){
-    return this.http.get(' http://localhost:3005/data').pipe()
+    return this.http.get(' http://localhost:3004/data').pipe()
 
    }
 }

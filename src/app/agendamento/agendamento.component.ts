@@ -106,13 +106,15 @@ export class AgendamentoComponent implements OnInit {
 
   save() {
     if (this.form.valid) {
+      console.log('nao foi')
+      this.ifError = true
+         } else {        
       this.ifError = false,
+      console.log('foi')
         this.bsModalRef = this.modalService.show(ModalComponent,
           {
             class: 'modal-dialog-centered'
           })
-         } else { 
-      this.ifError = true
     }
   }
 
@@ -135,4 +137,20 @@ export class AgendamentoComponent implements OnInit {
     }
   
   }
-}
+
+  saveData(){
+    let data = {
+       image: this.imageSrc,
+       dataPost: this.form.get('data').value,
+       text:this.form.get('text').value,
+       img: this.form.get('img').value,
+       social_network_key: this.form.get('social_network_key').value
+       
+    }
+
+    this.agendamento.post(data).subscribe (data =>{
+            data
+      })
+    }
+
+  }
