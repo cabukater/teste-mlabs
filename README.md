@@ -23,6 +23,9 @@ Usando NGX-BooStrap para datepicker e modal
 ngx-emoji-picker
 
 
+Versão Angular 8
+
+
 Instale os  pacotes:
 ```sh
 $ npm install 
