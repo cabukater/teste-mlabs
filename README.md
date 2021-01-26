@@ -1,27 +1,22 @@
-# MLabs
+# MLabs Teste
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Esse é um pequeno exemplo do que posso fazer ,espero que gostem :)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Esse projeto foi realizado seguindo algumas praticas que conheço como esses exemplos abaixo:
+  - Capacidade de desenvolver layoout mobile desktop (seguindo mobile first)
+  - Componetização de elementos mais usados
+  - Uso de reactive forms no angular
+  - Sem muitos plugins externos (usando somente para datepicker, Modal e Emoji)
+  
 
-## Build
+Rodar o projeto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Plugins:
+versão 8 do angular
+Usando NGX-BooStrap para datepicker e modal
+ngx-emoji-picker
+Express paa usar heroku
