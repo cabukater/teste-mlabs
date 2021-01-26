@@ -13,3 +13,7 @@ app.get('/*', (req, res) =>
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000);
+
+http.listen((process.env.PORT || 5000), function(){
+    console.log('listening on *:5000');
+  });
