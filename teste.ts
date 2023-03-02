@@ -1,19 +1,18 @@
-it('should emit the relations and charon session when a response is received', () => {
-  const relations = [{ rel: 'some_rel', href: 'some_href' }];
-  const charonSession = 'some_session';
-  const response = {
-    type: HttpEventType.Response,
-    headers: new HttpHeaders().set('x-charon-session', charonSession),
-  } as HttpResponse<any>;
+it('should call charonService.initialize with the correct parameters', () => {
+  const token = 'some_token';
 
-  charonServiceMock.initialize.mockReturnValue(of(response));
-  charonServiceMock.getRelations.mockReturnValue(relations);
+  caronteService.startCharon(token);
 
-  const emitlistSpy = jest.spyOn(caronteService.emitList, 'next');
-  const getSessionSpy = jest.spyOn(caronteService.getSession, 'next');
-
-  caronteService.startCharon('some_token');
-
-  expect(emitlistSpy).toHaveBeenCalledWith(relations);
-  expect(getSessionSpy).toHaveBeenCalledWith(charonSession);
+  expect(charonServiceMock.initialize).toHaveBeenCalled();
+  expect(charonServiceMock.initialize).toHaveBeenCalledWith(
+    'charon_entrypoint',
+    {
+      headers: expect.objectContaining({
+        Authorization: `Bearer ${token}`,
+        'x-correlationID': expect.any(String),
+        apikey: 'some_apikey',
+      }),
+      observe: 'response',
+    }
+  );
 });
