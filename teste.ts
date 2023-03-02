@@ -1,18 +1,18 @@
-it('should call charonService.initialize with the correct parameters', () => {
-  const token = 'some_token';
+it('should filter links by rel and method when emitList is called', () => {
+  const rel = 'some_rel';
+  const met = 'some_met';
+  const link = 'some_link';
+  const resources = [
+    { href: 'some_href', rel: 'some_other_rel', method: 'some_other_met' },
+    { href: link, rel: rel, method: met },
+    { href: 'some_other_href', rel: 'some_other_rel', method: 'some_other_met' },
+  ];
+  caronteService.resources = resources;
 
-  caronteService.startCharon(token);
+  const getLinkSpy = jest.spyOn(caronteService.getLink, 'next');
 
-  expect(charonServiceMock.initialize).toHaveBeenCalled();
-  expect(charonServiceMock.initialize).toHaveBeenCalledWith(
-    'charon_entrypoint',
-    {
-      headers: expect.objectContaining({
-        Authorization: `Bearer ${token}`,
-        'x-correlationID': expect.any(String),
-        apikey: 'some_apikey',
-      }),
-      observe: 'response',
-    }
-  );
+  caronteService.emitList.next(resources);
+  caronteService.filter(rel, met);
+
+  expect(getLinkSpy).toHaveBeenCalledWith(link);
 });
