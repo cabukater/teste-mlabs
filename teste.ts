@@ -1,18 +1,25 @@
-it('should filter links by rel and method when emitList is called', () => {
-  const rel = 'some_rel';
-  const met = 'some_met';
-  const link = 'some_link';
-  const resources = [
-    { href: 'some_href', rel: 'some_other_rel', method: 'some_other_met' },
-    { href: link, rel: rel, method: met },
-    { href: 'some_other_href', rel: 'some_other_rel', method: 'some_other_met' },
-  ];
-  caronteService.resources = resources;
+it('should emit the relations and charon session when a response is received', () => {
+  const relations = [{ rel: 'some_rel', href: 'some_href' }];
+  const charonSession = 'some_session';
+  const response = {
+    type: 'response',
+    headers: {
+      get: jest.fn().mockReturnValue(charonSession),
+    },
+  } as any;
 
-  const getLinkSpy = jest.spyOn(caronteService.getLink, 'next');
+  charonServiceMock.initialize.mockReturnValue({
+    subscribe: jest.fn((callback) => {
+      callback(response);
+    }),
+  } as any);
+  charonServiceMock.getRelations.mockReturnValue(relations);
 
-  caronteService.emitList.next(resources);
-  caronteService.filter(rel, met);
+  const emitlistSpy = jest.spyOn(caronteService.emitList, 'next');
+  const getSessionSpy = jest.spyOn(caronteService.getSession, 'next');
 
-  expect(getLinkSpy).toHaveBeenCalledWith(link);
+  caronteService.startCharon('some_token');
+
+  expect(emitlistSpy).toHaveBeenCalledWith(relations);
+  expect(getSessionSpy).toHaveBeenCalledWith(charonSession);
 });
