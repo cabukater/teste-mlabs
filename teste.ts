@@ -1,27 +1,42 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+describe('handleError function', () => {
+  let loaderProfile;
+  let router;
+  let error;
 
-describe('MinhaFuncao', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
-    });
+    loaderProfile = {
+      denyAccess: jest.fn(),
+    };
+    router = {
+      navigateByUrl: jest.fn(),
+    };
+    error = {
+      status: 403,
+    };
   });
 
-  it('deve tratar erros de acesso negado', () => {
-    const error = { status: 403 };
-    const loaderProfile = {
-      denyAccess: jasmine.createSpy('denyAccess')
-    };
-    const router = {
-      navigateByUrl: jasmine.createSpy('navigateByUrl')
-    };
+  it('should call denyAccess and navigateByUrl when error status is 403', () => {
+    const throwError = jest.fn();
+    const errorState = {};
 
-    const minhaFuncao = new MinhaFuncao(loaderProfile, router);
-
-    minhaFuncao.handleError(error);
+    handleError(error, loaderProfile, router, throwError, errorState);
 
     expect(loaderProfile.denyAccess).toHaveBeenCalled();
-    expect(router.navigateByUrl).toHaveBeenCalledWith('negado', error);
+    expect(router.navigateByUrl).toHaveBeenCalledWith('negado', errorState);
+    expect(throwError).toHaveBeenCalledWith(error);
+  });
+
+  it('should call throwError when error status is not 403', () => {
+    error.status = 500;
+    const throwError = jest.fn();
+    const errorState = {};
+
+    expect(() => {
+      handleError(error, loaderProfile, router, throwError, errorState);
+    }).toThrow(error);
+
+    expect(loaderProfile.denyAccess).not.toHaveBeenCalled();
+    expect(router.navigateByUrl).not.toHaveBeenCalled();
+    expect(throwError).toHaveBeenCalledWith(error);
   });
 });
