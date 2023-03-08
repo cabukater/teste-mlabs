@@ -1,68 +1,71 @@
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CarService } from '@minalib/carService';
 import { CarinService } from './carin.service';
-import { environment } from 'src/environment/environment';
 
 describe('CarinService', () => {
-  let service: CarinService;
-  let carServiceSpy: jest.SpyInstance;
+  let carinService: CarinService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    const spy = jest.spyOn(CarService.prototype, 'initialize');
-    carServiceSpy = jest.spyOn(CarService.prototype, 'get');
-    service = new CarinService(new CarService());
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [CarService, CarinService]
+    });
+
+    carinService = TestBed.inject(CarinService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    httpMock.verify();
+  });
+});
+
+
+
+describe('CarinService', () => {
+  let carinService: CarinService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [CarService, CarinService]
+    });
+
+    carinService = TestBed.inject(CarinService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   describe('get', () => {
-    it('should return data', (done) => {
-      const token = 'test-token';
-      const relation = 'test-relation';
-      const correlationId = 'test-correlation-id';
-      const responseData = { data: 'test-data' };
+    it('should return an Observable', () => {
+      const token = '1234';
+      const relation = 'cars';
+      const correlationId = '5678';
 
-      const headers = new HttpHeaders({
-        'aut': `Bearer ${token}`,
-        'id-cor': correlationId,
-        'key': environment.key,
-      });
+      const result = carinService.get(token, relation, correlationId);
 
-      const response = new HttpResponse({ body: responseData, status: 200 });
-      carServiceSpy.mockReturnValueOnce(of(response));
+      expect(result).toEqual(jasmine.any(Observable));
+    });
 
-      service.get(token, relation, correlationId).subscribe((data) => {
-        expect(data).toEqual(responseData);
-        done();
-      });
+    it('should send a GET request with the correct headers', () => {
+      const token = '1234';
+      const relation = 'cars';
+      const correlationId = '5678';
+
+      carinService.get(token, relation, correlationId).subscribe();
+
+      const req = httpMock.expectOne(
+        `${enviroinment.endpoimnt}/${relation}`
+      );
+      expect(req.request.method).toBe('GET');
+      expect(req.request.headers.get('aut')).toBe(`Bearer ${token}`);
+      expect(req.request.headers.get('id-cor')).toBe(correlationId);
+      expect(req.request.headers.get('key')).toBe(enviroinment.key);
     });
   });
-
-  describe('post', () => {
-    it('should return data', (done) => {
-      const token = 'test-token';
-      const relation = 'test-relation';
-      const correlationId = 'test-correlation-id';
-      const body = { data: 'test-data' };
-      const responseData = { data: 'test-data' };
-
-      const headers = new HttpHeaders({
-        'aut': `Bearer ${token}`,
-        'id-cor': correlationId,
-        'key': environment.key,
-      });
-
-      const response = new HttpResponse({ body: responseData, status: 200 });
-      carServiceSpy.mockReturnValueOnce(of(response));
-
-      service.post(token, relation, correlationId, body).subscribe((data) => {
-        expect(data).toEqual(responseData);
-        done();
-      });
-    });
-  });
-});
