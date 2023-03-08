@@ -1,71 +1,108 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { CarService } from '@minalib/carService';
-import { CarinService } from './carin.service';
+import { HttpHeaders, HttpEventType } from '@angular/common/http';
+import { of } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
+import { CaronService } from '@minalib/caronService';
+import { CaronteService } from './CaronteService';
 
-describe('CarinService', () => {
-  let carinService: CarinService;
-  let httpMock: HttpTestingController;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [CarService, CarinService]
-    });
-
-    carinService = TestBed.inject(CarinService);
-    httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  afterEach(() => {
-    httpMock.verify();
-  });
-});
-
-
-
-describe('CarinService', () => {
-  let carinService: CarinService;
-  let httpMock: HttpTestingController;
+describe('CaronteService', () => {
+  let service: CaronteService;
+  let caronService: jest.Mocked<CaronService>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [CarService, CarinService]
-    });
+    caronService = {
+      initialize: jest.fn(),
+      get: jest.fn(),
+      post: jest.fn(),
+    } as unknown as jest.Mocked<CaronService>;
 
-    carinService = TestBed.inject(CarinService);
-    httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  afterEach(() => {
-    httpMock.verify();
+    service = new CaronteService(caronService);
   });
 
   describe('get', () => {
-    it('should return an Observable', () => {
-      const token = '1234';
-      const relation = 'cars';
-      const correlationId = '5678';
+    it('should call caronService.get with headers', () => {
+      const token = 'some-token';
+      const relation = 'some-relation';
+      const correlationId = 'some-correlation-id';
+      const endpoint = 'some-endpoint';
+      const key = 'some-key';
+      const body = { some: 'body' };
 
-      const result = carinService.get(token, relation, correlationId);
+      const headers = new HttpHeaders({
+        aut: `Bearer ${token}`,
+        'id-cor': correlationId,
+        key,
+      });
 
-      expect(result).toEqual(jasmine.any(Observable));
-    });
+      const response = {
+        type: HttpEventType.Response,
+      };
 
-    it('should send a GET request with the correct headers', () => {
-      const token = '1234';
-      const relation = 'cars';
-      const correlationId = '5678';
-
-      carinService.get(token, relation, correlationId).subscribe();
-
-      const req = httpMock.expectOne(
-        `${enviroinment.endpoimnt}/${relation}`
+      caronService.initialize.mockReturnValue(
+        of(response as any)
       );
-      expect(req.request.method).toBe('GET');
-      expect(req.request.headers.get('aut')).toBe(`Bearer ${token}`);
-      expect(req.request.headers.get('id-cor')).toBe(correlationId);
-      expect(req.request.headers.get('key')).toBe(enviroinment.key);
+      caronService.get.mockReturnValue(
+        of({ type: HttpEventType.Response, body } as any)
+      );
+
+      service.get(token, relation, correlationId).subscribe((result) => {
+        expect(caronService.initialize).toHaveBeenCalledWith(
+          endpoint,
+          expect.objectContaining({
+            headers,
+            observe: 'response',
+          })
+        );
+        expect(caronService.get).toHaveBeenCalledWith(relation, {
+          headers,
+        });
+        expect(result).toEqual(body);
+      });
     });
   });
+
+  describe('post', () => {
+    it('should call caronService.post with headers and body', () => {
+      const token = 'some-token';
+      const relation = 'some-relation';
+      const correlationId = 'some-correlation-id';
+      const endpoint = 'some-endpoint';
+      const key = 'some-key';
+      const body = { some: 'body' };
+
+      const headers = new HttpHeaders({
+        aut: `Bearer ${token}`,
+        'id-cor': correlationId,
+        key,
+      });
+
+      const response = {
+        type: HttpEventType.Response,
+        ok: true,
+        body: JSON.stringify(body),
+      };
+
+      caronService.initialize.mockReturnValue(
+        of(response as any)
+      );
+      caronService.post.mockReturnValue(
+        of(response as any)
+      );
+
+      service.post(token, relation, correlationId, body).subscribe((result) => {
+        expect(caronService.initialize).toHaveBeenCalledWith(
+          endpoint,
+          expect.objectContaining({
+            headers,
+            observe: 'response',
+          })
+        );
+        expect(caronService.post).toHaveBeenCalledWith(relation, {
+          headers,
+          observe: 'body',
+          responseType: 'text',
+        });
+        expect(result).toEqual(body);
+      });
+    });
+  });
+});
