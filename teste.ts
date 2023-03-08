@@ -1,69 +1,68 @@
-import { CaronteService, CharonService } from './caronte.service';
-import { CaronteFilter } from './caronte.filter';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
+import { CarService } from '@minalib/carService';
+import { CarinService } from './carin.service';
+import { environment } from 'src/environment/environment';
 
-describe('CaronteService', () => {
-  let caronteService: CaronteService;
-  let charonServiceMock: jest.Mocked<CharonService>;
+describe('CarinService', () => {
+  let service: CarinService;
+  let carServiceSpy: jest.SpyInstance;
 
   beforeEach(() => {
-    charonServiceMock = {
-      initialize: jest.fn(),
-      getRelations: jest.fn(),
-    } as jest.Mocked<CharonService>;
-
-    caronteService = new CaronteService(charonServiceMock);
+    const spy = jest.spyOn(CarService.prototype, 'initialize');
+    carServiceSpy = jest.spyOn(CarService.prototype, 'get');
+    service = new CarinService(new CarService());
   });
 
-  describe('startCharon', () => {
-    // ...
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
-  describe('filter', () => {
-    let links: any[];
-    const rel = 'some_rel';
-    const met = 'some_met';
+  describe('get', () => {
+    it('should return data', (done) => {
+      const token = 'test-token';
+      const relation = 'test-relation';
+      const correlationId = 'test-correlation-id';
+      const responseData = { data: 'test-data' };
 
-    beforeEach(() => {
-      links = [
-        { rel: 'some_rel', href: 'some_href', method: 'get' },
-        { rel: 'some_rel', href: 'some_href', method: 'post' },
-        { rel: 'other_rel', href: 'other_href', method: 'get' },
-      ];
+      const headers = new HttpHeaders({
+        'aut': `Bearer ${token}`,
+        'id-cor': correlationId,
+        'key': environment.key,
+      });
+
+      const response = new HttpResponse({ body: responseData, status: 200 });
+      carServiceSpy.mockReturnValueOnce(of(response));
+
+      service.get(token, relation, correlationId).subscribe((data) => {
+        expect(data).toEqual(responseData);
+        done();
+      });
     });
+  });
 
-    it('should emit the filtered links when at least one link matches the filter', () => {
-      const expectedFilteredLinks = [{ rel: 'some_rel', href: 'some_href', method: 'get' }];
+  describe('post', () => {
+    it('should return data', (done) => {
+      const token = 'test-token';
+      const relation = 'test-relation';
+      const correlationId = 'test-correlation-id';
+      const body = { data: 'test-data' };
+      const responseData = { data: 'test-data' };
 
-      const emitListSpy = jest.spyOn(caronteService.emitList, 'subscribe');
-      const getLinkSpy = jest.spyOn(caronteService.getLink, 'next');
+      const headers = new HttpHeaders({
+        'aut': `Bearer ${token}`,
+        'id-cor': correlationId,
+        'key': environment.key,
+      });
 
-      caronteService.filter(rel, met);
+      const response = new HttpResponse({ body: responseData, status: 200 });
+      carServiceSpy.mockReturnValueOnce(of(response));
 
-      expect(emitListSpy).toHaveBeenCalled();
-      expect(caronteService.resources).toEqual(links);
-      expect(caronteService.filteredLinks).toEqual(expectedFilteredLinks);
-      expect(getLinkSpy).toHaveBeenCalledWith(expectedFilteredLinks[0].href);
-    });
-
-    it('should set filteredLinks to an empty array if no links match the filter', () => {
-      const rel = 'rel';
-      const met = 'GET';
-      const resources: any[] = [
-        { href: 'https://example.com/foo', rel: 'rel', method: 'GET' },
-        { href: 'https://example.com/bar', rel: 'other', method: 'GET' },
-        { href: 'https://example.com/baz', rel: 'rel', method: 'POST' },
-      ];
-
-      const filter = new CaronteFilter(caronteService, charonServiceMock.initialize);
-      const emitListSpy = jest.spyOn(caronteService.emitList, 'subscribe').mockReturnValue(of(resources));
-      const getLinkSpy = jest.spyOn(caronteService.getLink, 'next');
-
-      filter.filter(rel, met);
-
-      expect(getLinkSpy).not.toHaveBeenCalled();
-      expect(filter.filteredLinks).toEqual([]);
-      emitListSpy.mockRestore();
-      getLinkSpy.mockRestore();
+      service.post(token, relation, correlationId, body).subscribe((data) => {
+        expect(data).toEqual(responseData);
+        done();
+      });
     });
   });
 });
