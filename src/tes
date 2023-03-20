@@ -1,72 +1,52 @@
-import { of } from 'rxjs';
-import { FormBuilder } from '@angular/forms';
-import { BsModalService } from '@modalLib';
-import { batatinhaComponent } from './batatinha.component';
-import { BatatinhaFil } from 'batatinha.model.ts';
-import { BatatinhaService } from 'batatinha.service.ts';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ModalAlertComponent } from './modal-alert.component';
+import { EventEmitter } from '@angular/core';
 
-describe('batatinhaComponent', () => {
-  let component: batatinhaComponent;
-  let batatinhaServiceStub: Partial<BatatinhaService>;
-  let bsModalServiceStub: Partial<BsModalService>;
+describe('ModalAlertComponent', () => {
+  let component: ModalAlertComponent;
+  let fixture: ComponentFixture<ModalAlertComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ ModalAlertComponent ]
+    })
+    .compileComponents();
+  });
 
   beforeEach(() => {
-    batatinhaServiceStub = {
-      getList: () => of([{ id: 1, jornada: 'teste', quarentena: 30 }])
-      insert: (batatinha: BatatinhaFil) => of(batatinha),
-      delete: (id: number) => of({})
-    };
-
-    bsModalServiceStub = {
-      show: () => ({
-        content: {
-          confirm: of(true)
-        },
-        onHidden: of({})
-      })
-    };
-
-    component = new batatinhaComponent(
-      batatinhaServiceStub as BatatinhaService,
-      new FormBuilder(),
-      bsModalServiceStub as BsModalService
-    );
+    fixture = TestBed.createComponent(ModalAlertComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set batatinhaList$ on init', () => {
-    component.ngOnInit();
-    expect(component.batatinhaList$).toBeDefined();
+  it('should emit a boolean value when onConfirm is called', () => {
+    // Arrange
+    const confirmEmitter = new EventEmitter<boolean>();
+    component.confirm = confirmEmitter;
+    const spy = spyOn(confirmEmitter, 'emit');
+    const value = true;
+
+    // Act
+    component.onConfirm(value);
+
+    // Assert
+    expect(spy).toHaveBeenCalledWith(value);
   });
 
-  it('should set batatinhaForm on formConst', () => {
-    component.formConst();
-    expect(component.batatinhaForm).toBeDefined();
-  });
+  it('should hide the modal when onConfirm is called', () => {
+    // Arrange
+    const bsModalRef = { hide: () => {} };
+    component.bsModalRel = bsModalRef;
+    const spy = spyOn(bsModalRef, 'hide');
 
-  it('should call batatinhaService insert on submitForm', () => {
-    spyOn(batatinhaServiceStub, 'insert').and.callThrough();
-    component.batatinhaForm.setValue({
-      id: 1,
-      jornada: 'teste',
-      quarentena: 30
-    });
-    component.submitForm();
-    expect(batatinhaServiceStub.insert).toHaveBeenCalled();
-  });
+    // Act
+    component.onConfirm(true);
 
-  it('should call batatinhaService delete on DeleteItem', () => {
-    spyOn(batatinhaServiceStub, 'delete').and.callThrough();
-    component.DeleteItem({ id: 1, jornada: 'teste', quarentena: 30 });
-    expect(batatinhaServiceStub.delete).toHaveBeenCalled();
-  });
-
-  it('should call bsModalService show on openEditModal', () => {
-    spyOn(bsModalServiceStub, 'show').and.callThrough();
-    component.openEditModal({ id: 1, jornada: 'teste', quarentena: 30 });
-    expect(bsModalServiceStub.show).toHaveBeenCalled();
+    // Assert
+    expect(spy).toHaveBeenCalled();
   });
 });
