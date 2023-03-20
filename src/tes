@@ -1,25 +1,53 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ModalAlertComponent } from './modal-alert.component';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Observable, of } from 'rxjs';
+import { DoisJ } from 'um.model.ts';
+import { DoisService } from 'um.service.ts';
+import { ModalEditComponent } from 'modalComponent.ts';
 
-describe('ModalAlertComponent', () => {
-  let component: ModalAlertComponent;
-  let fixture: ComponentFixture<ModalAlertComponent>;
+import { DoisComponent } from './um.component';
+
+describe('DoisComponent', () => {
+  let component: DoisComponent;
+  let fixture: ComponentFixture<DoisComponent>;
+  let umServiceStub: Partial<DoisService>;
+  let modalServiceStub: Partial<BsModalService>;
+  let formBuilder: FormBuilder;
 
   beforeEach(async () => {
+    umServiceStub = {
+      getList: (): Observable<DoisJ[]> => {
+        return of([]);
+      },
+      insert: (umJ: DoisJ): Observable<any> => {
+        return of({});
+      },
+      delete: (id: string): Observable<any> => {
+        return of({});
+      },
+    };
+
+    modalServiceStub = {
+      show: (): BsModalRef => {
+        return { content: { confirm: of(true) } } as BsModalRef;
+      },
+    };
+
     await TestBed.configureTestingModule({
-      declarations: [ ModalAlertComponent ],
+      declarations: [DoisComponent],
       providers: [
-        { provide: BsModalRef, useValue: { hide: () => {} } }
-      ]
-    })
-    .compileComponents();
+        FormBuilder,
+        { provide: DoisService, useValue: umServiceStub },
+        { provide: BsModalService, useValue: modalServiceStub },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalAlertComponent);
+    fixture = TestBed.createComponent(DoisComponent);
     component = fixture.componentInstance;
+    formBuilder = TestBed.inject(FormBuilder);
     fixture.detectChanges();
   });
 
@@ -27,29 +55,55 @@ describe('ModalAlertComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit a boolean value when onConfirm is called', () => {
-    // Arrange
-    const confirmEmitter = new EventEmitter<boolean>();
-    component.confirm = confirmEmitter;
-    const spy = spyOn(confirmEmitter, 'emit');
-    const value = true;
-
-    // Act
-    component.onConfirm(value);
-
-    // Assert
-    expect(spy).toHaveBeenCalledWith(value);
+  it('should set umList$ when ngOnInit is called', () => {
+    spyOn(umServiceStub, 'getList').and.returnValue(of([]));
+    component.ngOnInit();
+    expect(component.umList$).toEqual(of([]));
   });
 
-  it('should hide the modal when onConfirm is called', () => {
-    // Arrange
-    const bsModalRef = TestBed.inject(BsModalRef);
-    const spy = spyOn(bsModalRef, 'hide');
+  it('should create umForm with expected controls', () => {
+    component.formConst();
+    const expectedForm = formBuilder.group({
+      id: [],
+      umJ: ['', [Validators.required]],
+      time: ['', [Validators.required]],
+    });
+    expect(component.umForm).toEqual(expectedForm);
+  });
 
-    // Act
-    component.onConfirm(true);
+  it('should open edit modal when openEditModal is called', () => {
+    spyOn(modalServiceStub, 'show').and.returnValue({
+      onHidden: of({}),
+    } as BsModalRef);
+    component.openEditModal({});
+    expect(modalServiceStub.show).toHaveBeenCalled();
+  });
 
-    // Assert
-    expect(spy).toHaveBeenCalled();
+  it('should update umList$ and show alert modal on successful form submission', () => {
+    spyOn(umServiceStub, 'insert').and.returnValue(of({}));
+    spyOn(component, 'alertModal');
+    spyOn(umServiceStub, 'getList').and.returnValue(of([]));
+    component.submitForm();
+    expect(umServiceStub.insert).toHaveBeenCalledWith(
+      component.umForm?.value
+    );
+    expect(umServiceStub.getList).toHaveBeenCalled();
+    expect(component.alertModal).toHaveBeenCalledWith('msg', '');
+  });
+
+  it('should update umList$ and show success alert modal on successful item deletion', () => {
+    spyOn(modalServiceStub, 'show').and.returnValue({
+      content: { confirm: of(true) },
+    } as BsModalRef);
+    spyOn(umServiceStub, 'delete').and.returnValue(of({}));
+    spyOn(component, 'alertModal');
+    spyOn(umServiceStub, 'getList').and.returnValue(of([]));
+    component.DeleteItem({ id: '123' });
+    expect(modalServiceStub.show).toHaveBeenCalled();
+    expect(umServiceStub.delete).toHaveBeenCalledWith('123');
+    expect(component.alertModal).toHaveBeenCalledWith('', 'success');
+    expect(umServiceStub.getList).toHaveBeenCalled();
   });
 });
+
+}
