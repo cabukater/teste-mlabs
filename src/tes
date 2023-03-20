@@ -1,0 +1,72 @@
+import { of } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
+import { BsModalService } from '@modalLib';
+import { batatinhaComponent } from './batatinha.component';
+import { BatatinhaFil } from 'batatinha.model.ts';
+import { BatatinhaService } from 'batatinha.service.ts';
+
+describe('batatinhaComponent', () => {
+  let component: batatinhaComponent;
+  let batatinhaServiceStub: Partial<BatatinhaService>;
+  let bsModalServiceStub: Partial<BsModalService>;
+
+  beforeEach(() => {
+    batatinhaServiceStub = {
+      getList: () => of([{ id: 1, jornada: 'teste', quarentena: 30 }])
+      insert: (batatinha: BatatinhaFil) => of(batatinha),
+      delete: (id: number) => of({})
+    };
+
+    bsModalServiceStub = {
+      show: () => ({
+        content: {
+          confirm: of(true)
+        },
+        onHidden: of({})
+      })
+    };
+
+    component = new batatinhaComponent(
+      batatinhaServiceStub as BatatinhaService,
+      new FormBuilder(),
+      bsModalServiceStub as BsModalService
+    );
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should set batatinhaList$ on init', () => {
+    component.ngOnInit();
+    expect(component.batatinhaList$).toBeDefined();
+  });
+
+  it('should set batatinhaForm on formConst', () => {
+    component.formConst();
+    expect(component.batatinhaForm).toBeDefined();
+  });
+
+  it('should call batatinhaService insert on submitForm', () => {
+    spyOn(batatinhaServiceStub, 'insert').and.callThrough();
+    component.batatinhaForm.setValue({
+      id: 1,
+      jornada: 'teste',
+      quarentena: 30
+    });
+    component.submitForm();
+    expect(batatinhaServiceStub.insert).toHaveBeenCalled();
+  });
+
+  it('should call batatinhaService delete on DeleteItem', () => {
+    spyOn(batatinhaServiceStub, 'delete').and.callThrough();
+    component.DeleteItem({ id: 1, jornada: 'teste', quarentena: 30 });
+    expect(batatinhaServiceStub.delete).toHaveBeenCalled();
+  });
+
+  it('should call bsModalService show on openEditModal', () => {
+    spyOn(bsModalServiceStub, 'show').and.callThrough();
+    component.openEditModal({ id: 1, jornada: 'teste', quarentena: 30 });
+    expect(bsModalServiceStub.show).toHaveBeenCalled();
+  });
+});
