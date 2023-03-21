@@ -1,38 +1,88 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { of } from 'rxjs';
+import { Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { LikertJ, LikertResults } from 'likert.model.ts';
+import { LikertJService } from 'likert-j.service.ts';
+import { LikertRService } from 'likert-r.service.ts';
+import { ModalAlertsComponent } from 'modalAlertComponent.ts';
+import { ModalEditComponent } from 'modalComponent.ts';
 
-@Component({
-  selector: 'app-my-form',
-  templateUrl: './my-form.component.html',
-  styleUrls: ['./my-form.component.css']
-})
-export class MyFormComponent implements OnInit {
+import { LikertComponent } from './likert.component';
 
-  myForm: FormGroup;
+describe('LikertComponent', () => {
+  let component: LikertComponent;
+  let likertJService: Partial<LikertJService>;
+  let likertRService: Partial<LikertRService>;
+  let formBuilder: any;
+  let modalService: Partial<BsModalService>;
+  let bsModalRef: Partial<BsModalRef>;
+  let likertList$: any;
+  let likertResults$: any;
 
-  constructor(private fb: FormBuilder) { }
+  beforeEach(() => {
+    likertJService = {
+      insertJ: jest.fn(),
+      getList: jest.fn(),
+      delete: jest.fn()
+    };
+    likertRService = {
+      getList: jest.fn()
+    };
+    formBuilder = {
+      group: jest.fn()
+    };
+    modalService = {
+      show: jest.fn()
+    };
+    bsModalRef = {
+      content: { confirm: of(true) },
+      onHidden: of(null)
+    };
+    likertList$ = of([]);
+    likertResults$ = of([]);
+    component = new LikertComponent(
+      likertJService as LikertJService,
+      likertRService as LikertRService,
+      formBuilder,
+      modalService as BsModalService
+    );
+  });
 
-  ngOnInit(): void {
-    this.myForm = this.fb.group({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(25),
-        Validators.pattern(/^[^\s]+$/)
-      ]),
-      number: new FormControl(null, [
-        Validators.required,
-        Validators.min(0),
-        Validators.max(365)
-      ])
+  describe('ngOnInit()', () => {
+    beforeEach(() => {
+      jest.spyOn(component, 'formConst').mockImplementation(() => {});
+      jest.spyOn(likertJService, 'getList').mockReturnValueOnce(likertList$);
+      jest.spyOn(likertRService, 'getList').mockReturnValueOnce(likertResults$);
     });
-  }
 
-  get isNumberInvalid(): boolean {
-    return this.myForm.get('number').invalid && (this.myForm.get('number').dirty || this.myForm.get('number').touched);
-  }
+    it('should call formConst() and getList() on LikertJService and LikertRService', () => {
+      component.ngOnInit();
+      expect(component.formConst).toHaveBeenCalled();
+      expect(likertJService.getList).toHaveBeenCalled();
+      expect(likertRService.getList).toHaveBeenCalled();
+      expect(component.likertList$).toBe(likertList$);
+      expect(component.likertResults$).toBe(likertResults$);
+    });
+  });
 
-  get isNameInvalid(): boolean {
-    return this.myForm.get('name').invalid && (this.myForm.get('name').dirty || this.myForm.get('name').touched);
-  }
+  describe('touchInput()', () => {
+    beforeEach(() => {
+      component.likertForm = {
+        get: jest.fn().mockReturnValue({ markAsTouchhed: jest.fn() })
+      } as any;
+    });
 
-}
+    it('should mark control as touched', () => {
+      component.touchInput('name');
+      expect(component.likertForm?.get).toHaveBeenCalledWith('name');
+      expect(component.likertForm?.get('name')?.markAsTouchhed).toHaveBeenCalled();
+    });
+
+    it('should do nothing if control is not found', () => {
+      component.touchInput('invalid');
+      expect(component.likertForm?.get).toHaveBeenCalledWith('invalid');
+      expect(component.likertForm?.get('invalid')).toBeUndefined();
+    });
+  });
+
+
