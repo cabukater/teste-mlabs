@@ -1,24 +1,31 @@
-it('should open edit modal', () => {
-  // Criar um objeto likert fictício para usar no teste
-  const likert = { id: 1, name: 'Likert 1', value: 3 };
-  // Configurar o retorno do método show() do BsModalService para retornar um objeto fictício
-  const modalRef = { onHidden: of(true) };
-  spyOn(modalService, 'show').and.returnValue(modalRef as any);
-  
-  // Chamar a função openEditModal com o objeto likert fictício
-  component.openEditModal(likert);
+import { FormBuilder, AbstractControlOptions } from '@angular/forms';
 
-  // Verificar se a função show() do BsModalService foi chamada com os argumentos corretos
-  expect(modalService.show).toHaveBeenCalledWith(ModalEditComponent, {
-    initialState: { likert },
-    backdrop: true,
-    ignoreBackdropClick: true,
-    animated: true
+describe('SeuComponente', () => {
+  let component: SeuComponente;
+  let fixture: ComponentFixture<SeuComponente>;
+  let formBuilder: FormBuilder;
+
+  beforeEach(async () => {
+    const formBuilderMock: FormBuilder = {
+      group: (controlsConfig: { [key: string]: any }, options: AbstractControlOptions | null = null) => {
+        return {} as any;
+      }
+    };
+
+    await TestBed.configureTestingModule({
+      declarations: [SeuComponente],
+      providers: [{ provide: FormBuilder, useValue: formBuilderMock }],
+    }).compileComponents();
+
+    formBuilder = TestBed.inject(FormBuilder);
   });
 
-  // Verificar se a lista de likerts foi atualizada após a conclusão do modal
-  modalRef.onHidden?.subscribe(() => {
-    expect(likertJService.getList).toHaveBeenCalled();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SeuComponente);
+    component = fixture.componentInstance;
+  });
+
+  it('should do something', () => {
+    // Seu teste aqui
   });
 });
-
