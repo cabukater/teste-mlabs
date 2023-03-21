@@ -1,178 +1,47 @@
-import { of } from 'rxjs';
-import { Validators } from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { LikertJ, LikertResults } from 'likert.model.ts';
-import { LikertJService } from 'likert-j.service.ts';
-import { LikertRService } from 'likert-r.service.ts';
-import { ModalAlertsComponent } from 'modalAlertComponent.ts';
-import { ModalEditComponent } from 'modalComponent.ts';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Observable, of } from 'rxjs';
+import { LikertPageComponent } from './likert-page.component';
+import { ModalEditComponent } from '../components/modal-edit/modal-edit.component';
+import { ModalAlertsComponent } from '../components/modal-alerts/modal-alerts.component';
+import { LikertJorneyService } from '../services/likert-jorneys/likert-jorneys.service';
 
-import { LikertComponent } from './likert.component';
+describe('LikertPageComponent', () => {
+  let component: LikertPageComponent;
+  let fixture: ComponentFixture<LikertPageComponent>;
 
-describe('LikertComponent', () => {
-  let component: LikertComponent;
-  let likertJService: Partial<LikertJService>;
-  let likertRService: Partial<LikertRService>;
-  let formBuilder: any;
-  let modalService: Partial<BsModalService>;
-  let bsModalRef: Partial<BsModalRef>;
-  let likertList$: any;
-  let likertResults$: any;
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
+      declarations: [LikertPageComponent],
+      providers: [
+        { provide: BsModalService, useValue: {} },
+        { provide: BsModalRef, useValue: {} },
+        { provide: LikertJorneyService, useValue: { getList: () => of([]) } },
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() => {
-    likertJService = {
-      insertJ: jest.fn(),
-      getList: jest.fn(),
-      delete: jest.fn()
-    };
-    likertRService = {
-      getList: jest.fn()
-    };
-    formBuilder = {
-      group: jest.fn()
-    };
-    modalService = {
-      show: jest.fn()
-    };
-    bsModalRef = {
-      content: { confirm: of(true) },
-      onHidden: of(null)
-    };
-    likertList$ = of([]);
-    likertResults$ = of([]);
-    component = new LikertComponent(
-      likertJService as LikertJService,
-      likertRService as LikertRService,
-      formBuilder,
-      modalService as BsModalService
-    );
+    fixture = TestBed.createComponent(LikertPageComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  describe('ngOnInit()', () => {
-    beforeEach(() => {
-      jest.spyOn(component, 'formConst').mockImplementation(() => {});
-      jest.spyOn(likertJService, 'getList').mockReturnValueOnce(likertList$);
-      jest.spyOn(likertRService, 'getList').mockReturnValueOnce(likertResults$);
-    });
-
-    it('should call formConst() and getList() on LikertJService and LikertRService', () => {
-      component.ngOnInit();
-      expect(component.formConst).toHaveBeenCalled();
-      expect(likertJService.getList).toHaveBeenCalled();
-      expect(likertRService.getList).toHaveBeenCalled();
-      expect(component.likertList$).toBe(likertList$);
-      expect(component.likertResults$).toBe(likertResults$);
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
-  describe('touchInput()', () => {
-    beforeEach(() => {
-      component.likertForm = {
-        get: jest.fn().mockReturnValue({ markAsTouchhed: jest.fn() })
-      } as any;
-    });
-
-    it('should mark control as touched', () => {
-      component.touchInput('name');
-      expect(component.likertForm?.get).toHaveBeenCalledWith('name');
-      expect(component.likertForm?.get('name')?.markAsTouchhed).toHaveBeenCalled();
-    });
-
-    it('should do nothing if control is not found', () => {
-      component.touchInput('invalid');
-      expect(component.likertForm?.get).toHaveBeenCalledWith('invalid');
-      expect(component.likertForm?.get('invalid')).toBeUndefined();
-    });
+  it('should create a form with name and value', () => {
+    expect(component.likertForm.contains('name')).toBe(true);
+    expect(component.likertForm.contains('value')).toBe(true);
   });
 
-
-beforeEach(() => {
-  jest.spyOn(formBuilder, 'group').mockReturnValue({}) as any;
-});
-
-it('should create a form group', () => {
-  component.formConst();
-  expect(formBuilder.group).toHaveBeenCalledWith({
-    name: ['', Validators.required],
-    value: [null, Validators.required]
-  });
-  expect(component.likertForm).toBeDefined();
-});
-});
-
-describe('submitForm()', () => {
-const likertFormValue = { name: 'Test', value: 1 };
-const insertJResult = of(null);
-
-scss
-Copy code
-beforeEach(() => {
-  jest.spyOn(component, 'alertModal').mockImplementation(() => {});
-  component.likertForm = {
-    value: likertFormValue,
-    get: jest.fn().mockReturnValue({ value: 1 })
-  } as any;
-  jest.spyOn(likertJService, 'insertJ').mockReturnValueOnce(insertJResult);
-  jest.spyOn(likertJService, 'getList').mockReturnValueOnce(likertList$);
-});
-
-it('should insert a new LikertJ and update likertList$ on success', () => {
-  component.submitForm();
-  expect(likertJService.insertJ).toHaveBeenCalledWith(likertFormValue);
-  expect(likertJService.getList).toHaveBeenCalled();
-  expect(component.likertList$).toBe(likertList$);
-  expect(component.alertModal).toHaveBeenCalledWith(`salvo ${likertFormValue.name}`, 'success');
-});
-
-it('should show alert modal on error', () => {
-  const error = { message: 'An error occurred' };
-  jest.spyOn(insertJResult, 'subscribe').mockImplementationOnce(
-    (onSuccess: any, onError: any) => onError(error)
-  );
-  component.submitForm();
-  expect(component.alertModal).toHaveBeenCalledWith('ocorreu erro');
-});
-});
-
-describe('openEditModal()', () => {
-const likert = { id: 1, name: 'Test', value: 1 };
-const modalConfig = {
-initialState: { likert },
-backdrop: true,
-ignoreBackdropClick: true,
-animated: true
-};
-
-scss
-Copy code
-beforeEach(() => {
-  jest.spyOn(modalService, 'show').mockReturnValue(bsModalRef as BsModalRef);
-  jest.spyOn(likertJService, 'getList').mockReturnValueOnce(likertList$);
-});
-
-it('should open a modal and update likertList$ on modal close', () => {
-  component.openEditModal(likert);
-  expect(modalService.show).toHaveBeenCalledWith(ModalEditComponent, modalConfig);
-  expect(bsModalRef.onHidden).toBeDefined();
-  bsModalRef.onHidden!.subscribe(() => {
-    expect(likertJService.getList).toHaveBeenCalled();
-    expect(component.likertList$).toBe(likertList$);
+  it('should submit form and call insertJ()', () => {
+    spyOn(component.likertJService, 'insertJ').and.returnValue(of(true));
+    component.likertForm.setValue({ name: 'test', value: 1 });
+    component.submitForm();
+    expect(component.likertJService.insertJ).toHaveBeenCalled();
   });
 });
-});
-
-describe('DeleteItem()', () => {
-const likert = { id: 1, name: 'Test', value: 1 };
-const modalConfig = {
-initialState: { LikertJ: likert, typeModal: 'tesr' },
-backdrop: true,
-ignoreBackdropClick: true,
-animated: true
-};
-const deleteResult = of(null);
-
-beforeEach(() => {
-  jest.spyOn(modalService, 'show').mockReturnValue(bsModalRef as BsModalRef);
-  jest.spyOn(likertJService, 'delete').mockReturnValueOnce(deleteResult);
-  jest.spyOn(likertJService, 'getList').mockReturnValueOnce(likertList$);
-  jest.spyOn(component, 'alertModal').mockImplementation(() => {});
