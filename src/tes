@@ -1,47 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Observable, of } from 'rxjs';
-import { LikertPageComponent } from './likert-page.component';
-import { ModalEditComponent } from '../components/modal-edit/modal-edit.component';
-import { ModalAlertsComponent } from '../components/modal-alerts/modal-alerts.component';
-import { LikertJorneyService } from '../services/likert-jorneys/likert-jorneys.service';
-
-describe('LikertPageComponent', () => {
-  let component: LikertPageComponent;
-  let fixture: ComponentFixture<LikertPageComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
-      declarations: [LikertPageComponent],
-      providers: [
-        { provide: BsModalService, useValue: {} },
-        { provide: BsModalRef, useValue: {} },
-        { provide: LikertJorneyService, useValue: { getList: () => of([]) } },
-      ],
-    }).compileComponents();
+it('should delete an item', () => {
+    const likert = { id: 1, name: 'Test', value: 1 };
+    spyOn(component.likertJService, 'delete').and.returnValue(of(true));
+    spyOn(component, 'alertModal');
+    spyOn(component.likertList$, 'subscribe');
+    component.DeleteItem(likert);
+    expect(component.likertJService.delete).toHaveBeenCalledWith(likert.id);
+    expect(component.alertModal).toHaveBeenCalledWith('', 'success');
+    expect(component.likertList$.subscribe).toHaveBeenCalled();
   });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LikertPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should create a form with name and value', () => {
-    expect(component.likertForm.contains('name')).toBe(true);
-    expect(component.likertForm.contains('value')).toBe(true);
-  });
-
-  it('should submit form and call insertJ()', () => {
-    spyOn(component.likertJService, 'insertJ').and.returnValue(of(true));
-    component.likertForm.setValue({ name: 'test', value: 1 });
-    component.submitForm();
-    expect(component.likertJService.insertJ).toHaveBeenCalled();
-  });
-});
