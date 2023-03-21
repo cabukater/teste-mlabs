@@ -1,4 +1,6 @@
-import { FormBuilder, AbstractControlOptions } from '@angular/forms';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SeuComponente } from './seu-componente.component';
 
 describe('SeuComponente', () => {
   let component: SeuComponente;
@@ -7,12 +9,18 @@ describe('SeuComponente', () => {
 
   beforeEach(async () => {
     const formBuilderMock: FormBuilder = {
-      group: (controlsConfig: { [key: string]: any }, options: AbstractControlOptions | null = null) => {
-        return {} as any;
-      }
-    };
+      group: jest.fn().mockReturnValue({
+        get: jest.fn().mockReturnValue({ valueChanges: of() }),
+        valueChanges: of(),
+        statusChanges: of(),
+        reset: jest.fn(),
+        patchValue: jest.fn(),
+        markAllAsTouched: jest.fn(),
+      })
+    } as unknown as FormBuilder;
 
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
       declarations: [SeuComponente],
       providers: [{ provide: FormBuilder, useValue: formBuilderMock }],
     }).compileComponents();
@@ -25,7 +33,24 @@ describe('SeuComponente', () => {
     component = fixture.componentInstance;
   });
 
-  it('should do something', () => {
-    // Seu teste aqui
+  it('deve criar o componente', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('deve inicializar o formulário corretamente', () => {
+    const expectedForm = formBuilder.group({
+      name: ['', Validators.required],
+      value: [null, Validators.required],
+    });
+
+    expect(component.formulario).toEqual(expectedForm);
+  });
+
+  it('deve verificar se a propriedade name do formulário está definida', () => {
+    expect(component.formulario.get('name')).toBeDefined();
+  });
+
+  it('deve verificar se a propriedade value do formulário está definida', () => {
+    expect(component.formulario.get('value')).toBeDefined();
   });
 });
