@@ -86,3 +86,93 @@ describe('LikertComponent', () => {
   });
 
 
+beforeEach(() => {
+  jest.spyOn(formBuilder, 'group').mockReturnValue({}) as any;
+});
+
+it('should create a form group', () => {
+  component.formConst();
+  expect(formBuilder.group).toHaveBeenCalledWith({
+    name: ['', Validators.required],
+    value: [null, Validators.required]
+  });
+  expect(component.likertForm).toBeDefined();
+});
+});
+
+describe('submitForm()', () => {
+const likertFormValue = { name: 'Test', value: 1 };
+const insertJResult = of(null);
+
+scss
+Copy code
+beforeEach(() => {
+  jest.spyOn(component, 'alertModal').mockImplementation(() => {});
+  component.likertForm = {
+    value: likertFormValue,
+    get: jest.fn().mockReturnValue({ value: 1 })
+  } as any;
+  jest.spyOn(likertJService, 'insertJ').mockReturnValueOnce(insertJResult);
+  jest.spyOn(likertJService, 'getList').mockReturnValueOnce(likertList$);
+});
+
+it('should insert a new LikertJ and update likertList$ on success', () => {
+  component.submitForm();
+  expect(likertJService.insertJ).toHaveBeenCalledWith(likertFormValue);
+  expect(likertJService.getList).toHaveBeenCalled();
+  expect(component.likertList$).toBe(likertList$);
+  expect(component.alertModal).toHaveBeenCalledWith(`salvo ${likertFormValue.name}`, 'success');
+});
+
+it('should show alert modal on error', () => {
+  const error = { message: 'An error occurred' };
+  jest.spyOn(insertJResult, 'subscribe').mockImplementationOnce(
+    (onSuccess: any, onError: any) => onError(error)
+  );
+  component.submitForm();
+  expect(component.alertModal).toHaveBeenCalledWith('ocorreu erro');
+});
+});
+
+describe('openEditModal()', () => {
+const likert = { id: 1, name: 'Test', value: 1 };
+const modalConfig = {
+initialState: { likert },
+backdrop: true,
+ignoreBackdropClick: true,
+animated: true
+};
+
+scss
+Copy code
+beforeEach(() => {
+  jest.spyOn(modalService, 'show').mockReturnValue(bsModalRef as BsModalRef);
+  jest.spyOn(likertJService, 'getList').mockReturnValueOnce(likertList$);
+});
+
+it('should open a modal and update likertList$ on modal close', () => {
+  component.openEditModal(likert);
+  expect(modalService.show).toHaveBeenCalledWith(ModalEditComponent, modalConfig);
+  expect(bsModalRef.onHidden).toBeDefined();
+  bsModalRef.onHidden!.subscribe(() => {
+    expect(likertJService.getList).toHaveBeenCalled();
+    expect(component.likertList$).toBe(likertList$);
+  });
+});
+});
+
+describe('DeleteItem()', () => {
+const likert = { id: 1, name: 'Test', value: 1 };
+const modalConfig = {
+initialState: { LikertJ: likert, typeModal: 'tesr' },
+backdrop: true,
+ignoreBackdropClick: true,
+animated: true
+};
+const deleteResult = of(null);
+
+beforeEach(() => {
+  jest.spyOn(modalService, 'show').mockReturnValue(bsModalRef as BsModalRef);
+  jest.spyOn(likertJService, 'delete').mockReturnValueOnce(deleteResult);
+  jest.spyOn(likertJService, 'getList').mockReturnValueOnce(likertList$);
+  jest.spyOn(component, 'alertModal').mockImplementation(() => {});
